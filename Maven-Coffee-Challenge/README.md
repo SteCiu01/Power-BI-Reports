@@ -11,5 +11,6 @@ You've been asked to share an explanatory report providing a data-driven strateg
 [Full Challenge Link](https://mavenanalytics.io/challenges/maven-coffee-challenge)
 
 **Pricing strategy:** How can we align prices with customer value perception?
-## Maven Coffee Challenge - How to successfully break into US coffee shops market? [Winner]
+
+## Maven Coffee Challenge - How to successfully break into US coffee shops market? [🏆 Winner]
 
