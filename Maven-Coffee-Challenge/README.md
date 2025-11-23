@@ -54,7 +54,7 @@ Imported the questionnaire results table from the Maven Coffee Challenge Landing
 
 At first, some general transformations have been applied to obtain the *facts_questionnaire_results_PQWork_1_General_ETL.*
 
-M-Code [here](https://drive.google.com/file/d/1SpC2BzsPIshe9vMkkB_DEHlH3eImEwu8/view?usp=drive_link)
+M-Code [here](https://github.com/SteCiu01/Power-BI-Reports/blob/main/Maven-Coffee-Challenge/facts_questionnaire_results_PQWork_1_General_ETL_.txt)
 
 After this initial operations, this table has been referenced 6 times in order to work separately on each question type (multiple choice, single choice, Y/N, etc...).
 
@@ -64,25 +64,25 @@ First it was necessary to isolate all those questions where the respondents did 
 
 On this purpose the *facts_questionnaire_results_PQWork_MultiAnswer_noResponse* table was created
 
-M-Code [here](https://drive.google.com/file/d/1C7JKXKJ_-p6-GnpBZdGxqmC1hPDDb4SB/view?usp=drive_link)
+M-Code [here](https://github.com/SteCiu01/Power-BI-Reports/blob/main/Maven-Coffee-Challenge/facts_questionnaire_results_PQWork_MultiAnswer_noResponse.txt)
 
 After that, in a second referenced table, where the *facts_questionnaire_results_PQWork_MultiAnswer_noResponse* table was merged, the multiple choice questions were made "ready" for analysis.
 
 The resulting table was called *facts_questionnaire_results_PQWork_MultiAnswer.*
 
-M-Code [here](https://drive.google.com/file/d/1rn1uyEMSMrnXc7T8Cd95IdhLxudUEdcc/view?usp=drive_link)
+M-Code [here](https://github.com/SteCiu01/Power-BI-Reports/blob/main/Maven-Coffee-Challenge/facts_questionnaire_results_PQWork_MultiAnswer.txt)
 
 Single Choice Questions, Attributes, Y/N Questions and Verbatims
 
 For all these question types , specific transformations were applied in separate tables as follows.
 
-M-Code for *facts_questionnaire_results_PQWork_SingleSelect* table [here](https://drive.google.com/file/d/1xzOsXWm_OKz0BuOAcMkK5HukwVUQEw94/view?usp=sharing)
+M-Code for *facts_questionnaire_results_PQWork_SingleSelect* table [here](https://github.com/SteCiu01/Power-BI-Reports/blob/main/Maven-Coffee-Challenge/facts_questionnaire_results_PQWork_SingleSelect.txt)
 
-M-Code for *facts_questionnaire_results_PQWork_Attributes* table [here](https://drive.google.com/file/d/1Nze04U-2tV2ZgRwOJXhQfQK7RbP8dstI/view?usp=drive_link)
+M-Code for *facts_questionnaire_results_PQWork_Attributes* table [here](https://github.com/SteCiu01/Power-BI-Reports/blob/main/Maven-Coffee-Challenge/facts_questionnaire_results_PQWork_Attributes.txt)
 
-M-Code for *facts_questionnaire_results_PQWork_YN_AdditionalQs*  table [here](https://drive.google.com/file/d/1fAmQIdZAcDkZofgVCf5-We-CiwUwz52T/view?usp=drive_link)
+M-Code for *facts_questionnaire_results_PQWork_YN_AdditionalQs*  table [here](https://github.com/SteCiu01/Power-BI-Reports/blob/main/Maven-Coffee-Challenge/facts_questionnaire_results_PQWork_YN_AdditionalQs.txt)
 
-M-Code for *facts_questionnaire_results_PQWork_Verbatims* table [here](https://drive.google.com/file/d/16zrJMg2qnDnN48yMxWL2jHQSowtH7fA7/view?usp=drive_link)
+M-Code for *facts_questionnaire_results_PQWork_Verbatims* table [here](https://github.com/SteCiu01/Power-BI-Reports/blob/main/Maven-Coffee-Challenge/facts_questionnaire_results_PQWork_Verbatims.txt)
 
 The overall goal of all these transformations was to move from a table that had one row per respondent and each column per question, or parts of the same question (for multiple choice questions), to a table that has several rows for each question to each respondent, each row has one possible answer (answer choice) for that question, and the actual answer in the form of 1/0. Where 1 is an option selected by the respondent (true) and 0 is an option not selected by the respondent (false).
 
