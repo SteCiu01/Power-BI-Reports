@@ -172,36 +172,184 @@ in
 Merging the two tables to create all the needed elements for the intended visualizations (all the details are in the Power Query comments)
 
 ```
-// Bringing in the "percentages" table
-    #"Left Join Percentages Table" = Table.NestedJoin(#"Extracted Text Before Delimiter", {"Date", "Attribute"}, #"MTA_Daily_Ridership - percentages", {"Date", "Attribute"}, "MTA_Daily_Ridership (2)", JoinKind.LeftOuter),
-    #"Expanded {0}" = Table.ExpandTableColumn(#"Left Join Percentages Table", "MTA_Daily_Ridership (2)", {"%"}, {"%"}),
-    #"Replaced % 0s with Null" = Table.ReplaceValue(#"Expanded {0}",0,null,Replacer.ReplaceValue,{"%"}),
-    #"Renamed Columns" = Table.RenameColumns(#"Replaced % 0s with Null",{{"Value", "Passengers After Covid"}, {"%", "% vs Pre-Pandemic"}}),
-    
-    // Estimation of the pre-pandemic passengers based on the percentage vs. pre-pandemic
-    #"Added PrePandemic Passengers" = Table.AddColumn(#"Renamed Columns", "Pre-Pandemic Passengers", each 1*[Passengers After Covid]/[#"% vs Pre-Pandemic"], type number),
-   
-   // User friendly name
-    #"Renamed Transportation" = Table.RenameColumns(#"Added PrePandemic Passengers",{{"Attribute", "Transportation"}}),
-    
-    // Added Month and Year column and create its sorting (for the scatter chart play axis)
-    #"Inserted Month Name" = Table.AddColumn(#"Renamed Transportation", "Month Name", each Date.MonthName([Date]), type text),
-    #"Inserted Year" = Table.AddColumn(#"Inserted Month Name", "Year", each Date.Year([Date]), Int64.Type),
-    #"Added Month and Year" = Table.AddColumn(#"Inserted Year", "Month and Year", each [Month Name] & ", " & Number.ToText([Year]), type text),
-    #"Sorted Date Ascending" = Table.Sort(#"Added Month and Year",{{"Date", Order.Ascending}}),
-    #"Grouped Rows" = Table.Group(#"Sorted Date Ascending", {"Month and Year"}, {{"Count", each _, type table [Date=nullable date, Transportation=text, Passengers After Covid=number, #"% vs Pre-Pandemic"=nullable number, #"Pre-Pandemic Passengers"=number, #"% diff vs Pre-Pandemic"=number, Month Name=text, Year=number, Month and Year=text]}}),
-    #"Added Index" = Table.AddIndexColumn(#"Grouped Rows", "Sort Month and Year", 1, 1, Int64.Type),
-    #"Removed Other Columns" = Table.SelectColumns(#"Added Index",{"Count", "Sort Month and Year"}),
-    #"Expanded {0}1" = Table.ExpandTableColumn(#"Removed Other Columns", "Count", {"Date", "Transportation", "Passengers After Covid", "% vs Pre-Pandemic", "Pre-Pandemic Passengers", "% diff vs Pre-Pandemic", "Month Name", "Year", "Month and Year"}, {"Date", "Transportation", "Passengers After Covid", "% vs Pre-Pandemic", "Pre-Pandemic Passengers", "% diff vs Pre-Pandemic", "Month Name", "Year", "Month and Year"}),
-    
-    // Added weekdays and weekends column
-    #"Inserted Day Name" = Table.AddColumn(#"Expanded {0}1", "Day Name", each Date.DayOfWeekName([Date]), type text),
-    #"Added Conditional Column" = Table.AddColumn(#"Inserted Day Name", "Week/Weekend", each if [Day Name] = "Saturday" then "Weekends" else if [Day Name] = "Sunday" then "Weekends" else "Weekdays", type text),
-    
-    // Final columns selection
-    #"Removed Other Columns1" = Table.SelectColumns(#"Added Conditional Column",{"Date", "Transportation", "Passengers After Covid", "% vs Pre-Pandemic", "Pre-Pandemic Passengers", "% diff vs Pre-Pandemic", "Month Name", "Year", "Month and Year", "Sort Month and Year", "Week/Weekend"})
+let
+  #"Left Join Percentages Table" = Table.NestedJoin(
+    #"Extracted Text Before Delimiter", 
+    {"Date", "Attribute"}, 
+    #"MTA_Daily_Ridership - percentages", 
+    {"Date", "Attribute"}, 
+    "MTA_Daily_Ridership (2)", 
+    JoinKind.LeftOuter
+  ), 
+  #"Expanded {0}" = Table.ExpandTableColumn(
+    #"Left Join Percentages Table", 
+    "MTA_Daily_Ridership (2)", 
+    {"%"}, 
+    {"%"}
+  ), 
+  #"Replaced % 0s with Null" = Table.ReplaceValue(
+    #"Expanded {0}", 
+    0, 
+    null, 
+    Replacer.ReplaceValue, 
+    {"%"}
+  ), 
+  #"Renamed Columns" = Table.RenameColumns(
+    #"Replaced % 0s with Null", 
+    {{"Value", "Passengers After Covid"}, {"%", "% vs Pre-Pandemic"}}
+  ), 
+  // Estimation of the pre-pandemic passengers based onn the percentage vs. pre-pandemic
+  #"Added PrePandemic Passengers" = Table.AddColumn(
+    #"Renamed Columns", 
+    "Pre-Pandemic Passengers", 
+    each 1 * [Passengers After Covid] / [#"% vs Pre-Pandemic"], 
+    type number
+  ), 
+  // Bringing in the "percentages" table
+  #"Left Join Percentages Table" = Table.NestedJoin(
+    #"Extracted Text Before Delimiter", 
+    {"Date", "Attribute"}, 
+    #"MTA_Daily_Ridership - percentages", 
+    {"Date", "Attribute"}, 
+    "MTA_Daily_Ridership (2)", 
+    JoinKind.LeftOuter
+  ), 
+  #"Expanded {0}" = Table.ExpandTableColumn(
+    #"Left Join Percentages Table", 
+    "MTA_Daily_Ridership (2)", 
+    {"%"}, 
+    {"%"}
+  ), 
+  #"Replaced % 0s with Null" = Table.ReplaceValue(
+    #"Expanded {0}", 
+    0, 
+    null, 
+    Replacer.ReplaceValue, 
+    {"%"}
+  ), 
+  #"Renamed Columns" = Table.RenameColumns(
+    #"Replaced % 0s with Null", 
+    {{"Value", "Passengers After Covid"}, {"%", "% vs Pre-Pandemic"}}
+  ), 
+  // Estimation of the pre-pandemic passengers based on the percentage vs. pre-pandemic
+  #"Added PrePandemic Passengers" = Table.AddColumn(
+    #"Renamed Columns", 
+    "Pre-Pandemic Passengers", 
+    each 1 * [Passengers After Covid] / [#"% vs Pre-Pandemic"], 
+    type number
+  ), 
+  // User friendly name
+  #"Renamed Transportation" = Table.RenameColumns(
+    #"Added PrePandemic Passengers", 
+    {{"Attribute", "Transportation"}}
+  ), 
+  // Added Month and Year column and create its sorting (for the scatter chart play axis)
+  #"Inserted Month Name" = Table.AddColumn(
+    #"Renamed Transportation", 
+    "Month Name", 
+    each Date.MonthName([Date]), 
+    type text
+  ), 
+  #"Inserted Year" = Table.AddColumn(
+    #"Inserted Month Name", 
+    "Year", 
+    each Date.Year([Date]), 
+    Int64.Type
+  ), 
+  #"Added Month and Year" = Table.AddColumn(
+    #"Inserted Year", 
+    "Month and Year", 
+    each [Month Name] & ", " & Number.ToText([Year]), 
+    type text
+  ), 
+  #"Sorted Date Ascending" = Table.Sort(#"Added Month and Year", {{"Date", Order.Ascending}}), 
+  #"Grouped Rows" = Table.Group(
+    #"Sorted Date Ascending", 
+    {"Month and Year"}, 
+    {
+      {
+        "Count", 
+        each _, 
+        type table [
+          Date = nullable date, 
+          Transportation = text, 
+          Passengers After Covid = number, 
+          #"% vs Pre-Pandemic" = nullable number, 
+          #"Pre-Pandemic Passengers" = number, 
+          #"% diff vs Pre-Pandemic" = number, 
+          Month Name = text, 
+          Year = number, 
+          Month and Year = text
+        ]
+      }
+    }
+  ), 
+  #"Added Index" = Table.AddIndexColumn(#"Grouped Rows", "Sort Month and Year", 1, 1, Int64.Type), 
+  #"Removed Other Columns" = Table.SelectColumns(#"Added Index", {"Count", "Sort Month and Year"}), 
+  #"Expanded {0}1" = Table.ExpandTableColumn(
+    #"Removed Other Columns", 
+    "Count", 
+    {
+      "Date", 
+      "Transportation", 
+      "Passengers After Covid", 
+      "% vs Pre-Pandemic", 
+      "Pre-Pandemic Passengers", 
+      "% diff vs Pre-Pandemic", 
+      "Month Name", 
+      "Year", 
+      "Month and Year"
+    }, 
+    {
+      "Date", 
+      "Transportation", 
+      "Passengers After Covid", 
+      "% vs Pre-Pandemic", 
+      "Pre-Pandemic Passengers", 
+      "% diff vs Pre-Pandemic", 
+      "Month Name", 
+      "Year", 
+      "Month and Year"
+    }
+  ), 
+  // Added weekdays and weekends column
+  #"Inserted Day Name" = Table.AddColumn(
+    #"Expanded {0}1", 
+    "Day Name", 
+    each Date.DayOfWeekName([Date]), 
+    type text
+  ), 
+  #"Added Conditional Column" = Table.AddColumn(
+    #"Inserted Day Name", 
+    "Week/Weekend", 
+    each 
+      if [Day Name] = "Saturday" then
+        "Weekends"
+      else if [Day Name] = "Sunday" then
+        "Weekends"
+      else
+        "Weekdays", 
+    type text
+  ), 
+  // Final columns selection
+  #"Removed Other Columns1" = Table.SelectColumns(
+    #"Added Conditional Column", 
+    {
+      "Date", 
+      "Transportation", 
+      "Passengers After Covid", 
+      "% vs Pre-Pandemic", 
+      "Pre-Pandemic Passengers", 
+      "% diff vs Pre-Pandemic", 
+      "Month Name", 
+      "Year", 
+      "Month and Year", 
+      "Sort Month and Year", 
+      "Week/Weekend"
+    }
+  )
 in
-    #"Removed Other Columns1"
+  #"Removed Other Columns1"
 ```
 
 **Step 4:** Developed the interactive dashboard, according to plan, with the two visuals (scatter chart and area chart), the possibility to switch from one to the other with a click, the weekends/weekdays views, and the custom tooltip for the detailed figures.
