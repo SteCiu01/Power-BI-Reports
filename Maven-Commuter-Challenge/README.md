@@ -44,29 +44,11 @@ From raw data to unpivot of "totals" and "percentages"
 
 ```
 let
-```
-
-```
     Source = Csv.Document(File.Contents("C:\Users\stefa\OneDrive\\Desktop\Maven Data Challenge11 - Commuter Challenge\MTA_Daily_Ridership.csv"),[Delimiter=",", Columns=15, Encoding=1252, QuoteStyle=QuoteStyle.None]),
-```
-
-```
     #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
-```
-
-```
     #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Subways: Total Estimated Ridership", Int64.Type}, {"Buses: Total Estimated Ridership", Int64.Type}, {"LIRR: Total Estimated Ridership", Int64.Type}, {"Metro-North: Total Estimated Ridership", Int64.Type}, {"Access-A-Ride: Total Scheduled Trips", Int64.Type}, {"Bridges and Tunnels: Total Traffic", Int64.Type}, {"Staten Island Railway: Total Estimated Ridership", Int64.Type}, {"Date", type date}}),
-```
-
-```
     #"Unpivoted Total Columns" = Table.UnpivotOtherColumns(#"Changed Type", {"Date", "Subways: % of Comparable Pre-Pandemic Day", "Buses: % of Comparable Pre-Pandemic Day", "LIRR: % of Comparable Pre-Pandemic Day", "Metro-North: % of Comparable Pre-Pandemic Day", "Access-A-Ride: % of Comparable Pre-Pandemic Day", "Bridges and Tunnels: % of Comparable Pre-Pandemic Day", "Staten Island Railway: % of Comparable Pre-Pandemic Day"}, "Attribute", "Value"),
-```
-
-```
     #"Removed % Columns" = Table.RemoveColumns(#"Unpivoted Total Columns",{"Subways: % of Comparable Pre-Pandemic Day", "Buses: % of Comparable Pre-Pandemic Day", "LIRR: % of Comparable Pre-Pandemic Day", "Metro-North: % of Comparable Pre-Pandemic Day", "Access-A-Ride: % of Comparable Pre-Pandemic Day", "Bridges and Tunnels: % of Comparable Pre-Pandemic Day", "Staten Island Railway: % of Comparable Pre-Pandemic Day"}),
-```
-
-```
     #"Extracted Text Before Delimiter" = Table.TransformColumns(#"Removed % Columns", {{"Attribute", each Text.BeforeDelimiter(_, ":"), type text}})
 ```
 
@@ -74,50 +56,17 @@ let
 
 ```
 let
-```
-
-```
-    Source = Csv.Document(File.Contents("C:\Users\stefa\OneDrive\\Desktop\Maven Data Challenge11 - Commuter Challenge\MTA_Daily_Ridership.csv"),[Delimiter=",", Columns=15, Encoding=1252, QuoteStyle=QuoteStyle.None]),
-```
-
-```
-    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
-```
-
-```
-    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Subways: Total Estimated Ridership", Int64.Type}, {"Buses: Total Estimated Ridership", Int64.Type}, {"LIRR: Total Estimated Ridership", Int64.Type}, {"Metro-North: Total Estimated Ridership", Int64.Type}, {"Access-A-Ride: Total Scheduled Trips", Int64.Type}, {"Bridges and Tunnels: Total Traffic", Int64.Type}, {"Staten Island Railway: Total Estimated Ridership", Int64.Type}, {"Date", type date}}),
-```
-
-```
-    #"Unpivoted % Columns" = Table.UnpivotOtherColumns(#"Changed Type", {"Date", "Subways: Total Estimated Ridership", "Buses: Total Estimated Ridership", "LIRR: Total Estimated Ridership", "Metro-North: Total Estimated Ridership", "Access-A-Ride: Total Scheduled Trips", "Bridges and Tunnels: Total Traffic", "Staten Island Railway: Total Estimated Ridership"}, "Attribute", "Value"),
-```
-
-```
-    #"Removed Total Columns" = Table.RemoveColumns(#"Unpivoted % Columns",{"Subways: Total Estimated Ridership", "Buses: Total Estimated Ridership", "LIRR: Total Estimated Ridership", "Metro-North: Total Estimated Ridership", "Access-A-Ride: Total Scheduled Trips", "Bridges and Tunnels: Total Traffic", "Staten Island Railway: Total Estimated Ridership"}),
-```
-
-```
-    #"Renamed Value into %" = Table.RenameColumns(#"Removed Total Columns",{{"Value", "%"}}),
-```
-
-```
-    #"Extracted Text Before Delimiter" = Table.TransformColumns(#"Renamed Value into %", {{"Attribute", each Text.BeforeDelimiter(_, ":"), type text}}),
-```
-
-```
-    #"Changed Type for % col" = Table.TransformColumnTypes(#"Extracted Text Before Delimiter",{{"%", type number}}),
-```
-
-```
-    #"Divided transoform % in decimal" = Table.TransformColumns(#"Changed Type for % col", {{"%", each _ / 100, type number}})
-```
-
-```
+   Source = Csv.Document(File.Contents("C:\Users\stefa\OneDrive\\Desktop\Maven Data Challenge11 - Commuter Challenge\MTA_Daily_Ridership.csv"),[Delimiter=",", Columns=15, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+   #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+   #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Subways: Total Estimated Ridership", Int64.Type}, {"Buses: Total Estimated Ridership", Int64.Type}, {"LIRR: Total Estimated Ridership", Int64.Type}, {"Metro-North: Total Estimated Ridership", Int64.Type}, {"Access-A-Ride: Total Scheduled Trips", Int64.Type}, {"Bridges and Tunnels: Total Traffic", Int64.Type}, {"Staten Island Railway: Total Estimated Ridership", Int64.Type}, {"Date", type date}}),
+   #"Unpivoted % Columns" = Table.UnpivotOtherColumns(#"Changed Type", {"Date", "Subways: Total Estimated Ridership", "Buses: Total Estimated Ridership", "LIRR: Total Estimated Ridership", "Metro-North: Total Estimated Ridership", "Access-A-Ride: Total Scheduled Trips", "Bridges and Tunnels: Total Traffic", "Staten Island Railway: Total Estimated Ridership"}, "Attribute", "Value"),
+   #"Removed Total Columns" = Table.RemoveColumns(#"Unpivoted % Columns",{"Subways: Total Estimated Ridership", "Buses: Total Estimated Ridership", "LIRR: Total Estimated Ridership", "Metro-North: Total Estimated Ridership", "Access-A-Ride: Total Scheduled Trips", "Bridges and Tunnels: Total Traffic", "Staten Island Railway: Total Estimated Ridership"}),
+   #"Renamed Value into %" = Table.RenameColumns(#"Removed Total Columns",{{"Value", "%"}}),
+   #"Extracted Text Before Delimiter" = Table.TransformColumns(#"Renamed Value into %", {{"Attribute", each Text.BeforeDelimiter(_, ":"), type text}}),
+   #"Changed Type for % col" = Table.TransformColumnTypes(#"Extracted Text Before Delimiter",{{"%", type number}}),
+   #"Divided transoform % in decimal" = Table.TransformColumns(#"Changed Type for % col", {{"%", each _ / 100, type number}})
 in
-```
-
-```
-    #"Divided transoform % in decimal"
+   #"Divided transoform % in decimal"
 ```
 
 **Data Transformation Part 2:**
