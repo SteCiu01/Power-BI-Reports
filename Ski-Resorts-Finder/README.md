@@ -2,7 +2,7 @@
 
 "...you need to **build a dashboard to help skiers find their ideal destination**."
 
-https://app.powerbi.com/view?r=eyJrIjoiNzUwNWRlOGUtMDU4NS00YWM1LTgwOTktNWM2NTQwNmY0YjY5IiwidCI6IjhhNDk1ZGQwLThkNDEtNDcyYy1iMTljLTFhMzQzZjYxYmFhMSIsImMiOjl9
+<iframe title="Ski Resorts_SearchTool V2 - OnTheCloud" width="600" height="373.5" src="https://app.powerbi.com/view?r=eyJrIjoiNzUwNWRlOGUtMDU4NS00YWM1LTgwOTktNWM2NTQwNmY0YjY5IiwidCI6IjhhNDk1ZGQwLThkNDEtNDcyYy1iMTljLTFhMzQzZjYxYmFhMSIsImMiOjl9" frameborder="0" allowFullScreen="true"></iframe>
 
 # Approach Used:
 
