@@ -1,6 +1,7 @@
 # Power BI Reports
 
-<img width="1250" height="315" alt="image" src="https://github.com/user-attachments/assets/b3ef1568-63ea-4b85-8714-ab7b4a1de2d4" /><hr>
+<img width="1254" height="332" alt="image" src="https://github.com/user-attachments/assets/ece04582-d525-4328-869c-be24bc2e6b08" />
+<hr>
 
 
 Collection of my projects, primarily (but not only) from data challenges I participated in. These personal projects motivated me to explore innovative ways to stretch Power BI's capabilities to their limits.
