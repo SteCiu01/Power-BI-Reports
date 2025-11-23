@@ -2,7 +2,7 @@
 
 "...you need to **build a dashboard to help skiers find their ideal destination**."
 
-[Challenge Link](https://mavenanalytics.io/challenges/maven-slopes-challenge)
+[Full Challenge Link](https://mavenanalytics.io/challenges/maven-slopes-challenge)
 
 ## Maven Slopes Challenge - Ski Resorts Finder [🏆 Winner]
 
