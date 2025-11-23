@@ -28,7 +28,7 @@ I tackled this challenge dividing the workflow in two distinct parts: (a) data e
 
 (a.3) In a Spark Notebook, I made the explanatory analysis and visualizations using Spark SQL and PySpark and, I started to write the report draft, always within the Notebook, using the Markdown options. I first made a tabulation work to aggregate the survey results into summary tables using Spark SQL. After these tables were created, I converted them into pySpark data frames and I visualized them leveraging Python libraries. I finally used the Markdowns to comment the results and to provide recommendations, starting to basically create the final report draft.
 
-Link to the Notebook with all the SQL and Python codes for the visualizations  ->  [here](https://drive.google.com/file/d/15bbmyLh8BsNXGk-CJbo-0MolEw1hhDYq/view?usp=drive_link)
+Link to the Notebook with all the SQL and Python codes for the visualizations  ->  [here]https://github.com/SteCiu01/Power-BI-Reports/blob/main/Maven-Coffee-Challenge/Maven%20Coffee%20Challenge%20-%20Fabric_Notebook.ipynb)
 
 (b) The second part of the challenge involved summarizing the key insights and recommendations, in a visually appealing manner. To achieve this, I utilized Power BI to create a simplified and visually appealing version of the report (particularly focusing on the recommended actions for the stakeholders).
 
