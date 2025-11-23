@@ -16,7 +16,8 @@ You've been asked to share an explanatory report providing a data-driven strateg
 
 ***How to successfully break into US coffee shops market?***
 
-https://github.com/user-attachments/assets/5b2f1e10-7781-467d-8878-988e18b03302 <br>
+![2-MavenCoffeeChallenge-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/92c723cb-d985-41f9-a107-ac3248f6ef33)
+ <br>
 
 Data Driven Strategy for breaking into US Coffee Shops Market
 
