@@ -44,29 +44,127 @@ From raw data to unpivot of "totals" and "percentages"
 
 ```
 let
-    Source = Csv.Document(File.Contents("C:\Users\stefa\OneDrive\\Desktop\Maven Data Challenge11 - Commuter Challenge\MTA_Daily_Ridership.csv"),[Delimiter=",", Columns=15, Encoding=1252, QuoteStyle=QuoteStyle.None]),
-    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
-    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Subways: Total Estimated Ridership", Int64.Type}, {"Buses: Total Estimated Ridership", Int64.Type}, {"LIRR: Total Estimated Ridership", Int64.Type}, {"Metro-North: Total Estimated Ridership", Int64.Type}, {"Access-A-Ride: Total Scheduled Trips", Int64.Type}, {"Bridges and Tunnels: Total Traffic", Int64.Type}, {"Staten Island Railway: Total Estimated Ridership", Int64.Type}, {"Date", type date}}),
-    #"Unpivoted Total Columns" = Table.UnpivotOtherColumns(#"Changed Type", {"Date", "Subways: % of Comparable Pre-Pandemic Day", "Buses: % of Comparable Pre-Pandemic Day", "LIRR: % of Comparable Pre-Pandemic Day", "Metro-North: % of Comparable Pre-Pandemic Day", "Access-A-Ride: % of Comparable Pre-Pandemic Day", "Bridges and Tunnels: % of Comparable Pre-Pandemic Day", "Staten Island Railway: % of Comparable Pre-Pandemic Day"}, "Attribute", "Value"),
-    #"Removed % Columns" = Table.RemoveColumns(#"Unpivoted Total Columns",{"Subways: % of Comparable Pre-Pandemic Day", "Buses: % of Comparable Pre-Pandemic Day", "LIRR: % of Comparable Pre-Pandemic Day", "Metro-North: % of Comparable Pre-Pandemic Day", "Access-A-Ride: % of Comparable Pre-Pandemic Day", "Bridges and Tunnels: % of Comparable Pre-Pandemic Day", "Staten Island Railway: % of Comparable Pre-Pandemic Day"}),
-    #"Extracted Text Before Delimiter" = Table.TransformColumns(#"Removed % Columns", {{"Attribute", each Text.BeforeDelimiter(_, ":"), type text}})
+  Source = Csv.Document(
+    File.Contents(
+      "C:\Users\stefa\OneDrive\\Desktop\Maven Data Challenge11 - Commuter Challenge\MTA_Daily_Ridership.csv"
+    ), 
+    [Delimiter = ",", Columns = 15, Encoding = 1252, QuoteStyle = QuoteStyle.None]
+  ), 
+  #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]), 
+  #"Changed Type" = Table.TransformColumnTypes(
+    #"Promoted Headers", 
+    {
+      {"Subways: Total Estimated Ridership", Int64.Type}, 
+      {"Buses: Total Estimated Ridership", Int64.Type}, 
+      {"LIRR: Total Estimated Ridership", Int64.Type}, 
+      {"Metro-North: Total Estimated Ridership", Int64.Type}, 
+      {"Access-A-Ride: Total Scheduled Trips", Int64.Type}, 
+      {"Bridges and Tunnels: Total Traffic", Int64.Type}, 
+      {"Staten Island Railway: Total Estimated Ridership", Int64.Type}, 
+      {"Date", type date}
+    }
+  ), 
+  #"Unpivoted Total Columns" = Table.UnpivotOtherColumns(
+    #"Changed Type", 
+    {
+      "Date", 
+      "Subways: % of Comparable Pre-Pandemic Day", 
+      "Buses: % of Comparable Pre-Pandemic Day", 
+      "LIRR: % of Comparable Pre-Pandemic Day", 
+      "Metro-North: % of Comparable Pre-Pandemic Day", 
+      "Access-A-Ride: % of Comparable Pre-Pandemic Day", 
+      "Bridges and Tunnels: % of Comparable Pre-Pandemic Day", 
+      "Staten Island Railway: % of Comparable Pre-Pandemic Day"
+    }, 
+    "Attribute", 
+    "Value"
+  ), 
+  #"Removed % Columns" = Table.RemoveColumns(
+    #"Unpivoted Total Columns", 
+    {
+      "Subways: % of Comparable Pre-Pandemic Day", 
+      "Buses: % of Comparable Pre-Pandemic Day", 
+      "LIRR: % of Comparable Pre-Pandemic Day", 
+      "Metro-North: % of Comparable Pre-Pandemic Day", 
+      "Access-A-Ride: % of Comparable Pre-Pandemic Day", 
+      "Bridges and Tunnels: % of Comparable Pre-Pandemic Day", 
+      "Staten Island Railway: % of Comparable Pre-Pandemic Day"
+    }
+  ), 
+  #"Extracted Text Before Delimiter" = Table.TransformColumns(
+    #"Removed % Columns", 
+    {{"Attribute", each Text.BeforeDelimiter(_, ":"), type text}}
+  )
+in
+  #"Extracted Text Before Delimiter"
 ```
 
 2. MTA_Daily_Ridership - percentages Table
 
 ```
 let
-   Source = Csv.Document(File.Contents("C:\Users\stefa\OneDrive\\Desktop\Maven Data Challenge11 - Commuter Challenge\MTA_Daily_Ridership.csv"),[Delimiter=",", Columns=15, Encoding=1252, QuoteStyle=QuoteStyle.None]),
-   #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
-   #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Subways: Total Estimated Ridership", Int64.Type}, {"Buses: Total Estimated Ridership", Int64.Type}, {"LIRR: Total Estimated Ridership", Int64.Type}, {"Metro-North: Total Estimated Ridership", Int64.Type}, {"Access-A-Ride: Total Scheduled Trips", Int64.Type}, {"Bridges and Tunnels: Total Traffic", Int64.Type}, {"Staten Island Railway: Total Estimated Ridership", Int64.Type}, {"Date", type date}}),
-   #"Unpivoted % Columns" = Table.UnpivotOtherColumns(#"Changed Type", {"Date", "Subways: Total Estimated Ridership", "Buses: Total Estimated Ridership", "LIRR: Total Estimated Ridership", "Metro-North: Total Estimated Ridership", "Access-A-Ride: Total Scheduled Trips", "Bridges and Tunnels: Total Traffic", "Staten Island Railway: Total Estimated Ridership"}, "Attribute", "Value"),
-   #"Removed Total Columns" = Table.RemoveColumns(#"Unpivoted % Columns",{"Subways: Total Estimated Ridership", "Buses: Total Estimated Ridership", "LIRR: Total Estimated Ridership", "Metro-North: Total Estimated Ridership", "Access-A-Ride: Total Scheduled Trips", "Bridges and Tunnels: Total Traffic", "Staten Island Railway: Total Estimated Ridership"}),
-   #"Renamed Value into %" = Table.RenameColumns(#"Removed Total Columns",{{"Value", "%"}}),
-   #"Extracted Text Before Delimiter" = Table.TransformColumns(#"Renamed Value into %", {{"Attribute", each Text.BeforeDelimiter(_, ":"), type text}}),
-   #"Changed Type for % col" = Table.TransformColumnTypes(#"Extracted Text Before Delimiter",{{"%", type number}}),
-   #"Divided transoform % in decimal" = Table.TransformColumns(#"Changed Type for % col", {{"%", each _ / 100, type number}})
+  Source = Csv.Document(
+    File.Contents(
+      "C:\Users\stefa\OneDrive\\Desktop\Maven Data Challenge11 - Commuter Challenge\MTA_Daily_Ridership.csv"
+    ), 
+    [Delimiter = ",", Columns = 15, Encoding = 1252, QuoteStyle = QuoteStyle.None]
+  ), 
+  #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]), 
+  #"Changed Type" = Table.TransformColumnTypes(
+    #"Promoted Headers", 
+    {
+      {"Subways: Total Estimated Ridership", Int64.Type}, 
+      {"Buses: Total Estimated Ridership", Int64.Type}, 
+      {"LIRR: Total Estimated Ridership", Int64.Type}, 
+      {"Metro-North: Total Estimated Ridership", Int64.Type}, 
+      {"Access-A-Ride: Total Scheduled Trips", Int64.Type}, 
+      {"Bridges and Tunnels: Total Traffic", Int64.Type}, 
+      {"Staten Island Railway: Total Estimated Ridership", Int64.Type}, 
+      {"Date", type date}
+    }
+  ), 
+  #"Unpivoted % Columns" = Table.UnpivotOtherColumns(
+    #"Changed Type", 
+    {
+      "Date", 
+      "Subways: Total Estimated Ridership", 
+      "Buses: Total Estimated Ridership", 
+      "LIRR: Total Estimated Ridership", 
+      "Metro-North: Total Estimated Ridership", 
+      "Access-A-Ride: Total Scheduled Trips", 
+      "Bridges and Tunnels: Total Traffic", 
+      "Staten Island Railway: Total Estimated Ridership"
+    }, 
+    "Attribute", 
+    "Value"
+  ), 
+  #"Removed Total Columns" = Table.RemoveColumns(
+    #"Unpivoted % Columns", 
+    {
+      "Subways: Total Estimated Ridership", 
+      "Buses: Total Estimated Ridership", 
+      "LIRR: Total Estimated Ridership", 
+      "Metro-North: Total Estimated Ridership", 
+      "Access-A-Ride: Total Scheduled Trips", 
+      "Bridges and Tunnels: Total Traffic", 
+      "Staten Island Railway: Total Estimated Ridership"
+    }
+  ), 
+  #"Renamed Value into %" = Table.RenameColumns(#"Removed Total Columns", {{"Value", "%"}}), 
+  #"Extracted Text Before Delimiter" = Table.TransformColumns(
+    #"Renamed Value into %", 
+    {{"Attribute", each Text.BeforeDelimiter(_, ":"), type text}}
+  ), 
+  #"Changed Type for % col" = Table.TransformColumnTypes(
+    #"Extracted Text Before Delimiter", 
+    {{"%", type number}}
+  ), 
+  #"Divided transoform % in decimal" = Table.TransformColumns(
+    #"Changed Type for % col", 
+    {{"%", each _ / 100, type number}}
+  )
 in
-   #"Divided transoform % in decimal"
+  #"Divided transoform % in decimal"
 ```
 
 **Data Transformation Part 2:**
@@ -74,122 +172,35 @@ in
 Merging the two tables to create all the needed elements for the intended visualizations (all the details are in the Power Query comments)
 
 ```
-// Bringinng in the "percentages" table
-```
-
-```
+// Bringing in the "percentages" table
     #"Left Join Percentages Table" = Table.NestedJoin(#"Extracted Text Before Delimiter", {"Date", "Attribute"}, #"MTA_Daily_Ridership - percentages", {"Date", "Attribute"}, "MTA_Daily_Ridership (2)", JoinKind.LeftOuter),
-```
-
-```
     #"Expanded {0}" = Table.ExpandTableColumn(#"Left Join Percentages Table", "MTA_Daily_Ridership (2)", {"%"}, {"%"}),
-```
-
-```
     #"Replaced % 0s with Null" = Table.ReplaceValue(#"Expanded {0}",0,null,Replacer.ReplaceValue,{"%"}),
-```
-
-```
     #"Renamed Columns" = Table.RenameColumns(#"Replaced % 0s with Null",{{"Value", "Passengers After Covid"}, {"%", "% vs Pre-Pandemic"}}),
-```
-
-```
     
-```
-
-```
-    // Estimation of the pre-pandemic passengers based onn the percentage vs. pre-pandemic
-```
-
-```
+    // Estimation of the pre-pandemic passengers based on the percentage vs. pre-pandemic
     #"Added PrePandemic Passengers" = Table.AddColumn(#"Renamed Columns", "Pre-Pandemic Passengers", each 1*[Passengers After Covid]/[#"% vs Pre-Pandemic"], type number),
-```
-
-```
    
-```
-
-```
    // User friendly name
-```
-
-```
     #"Renamed Transportation" = Table.RenameColumns(#"Added PrePandemic Passengers",{{"Attribute", "Transportation"}}),
-```
-
-```
     
-```
-
-```
     // Added Month and Year column and create its sorting (for the scatter chart play axis)
-```
-
-```
     #"Inserted Month Name" = Table.AddColumn(#"Renamed Transportation", "Month Name", each Date.MonthName([Date]), type text),
-```
-
-```
     #"Inserted Year" = Table.AddColumn(#"Inserted Month Name", "Year", each Date.Year([Date]), Int64.Type),
-```
-
-```
-    #"Added Month and Year" = Table.AddColumn(#"Inserted Year", "Month and Year", each [Month Name] &amp; ", " &amp; Number.ToText([Year]), type text),
-```
-
-```
+    #"Added Month and Year" = Table.AddColumn(#"Inserted Year", "Month and Year", each [Month Name] & ", " & Number.ToText([Year]), type text),
     #"Sorted Date Ascending" = Table.Sort(#"Added Month and Year",{{"Date", Order.Ascending}}),
-```
-
-```
     #"Grouped Rows" = Table.Group(#"Sorted Date Ascending", {"Month and Year"}, {{"Count", each _, type table [Date=nullable date, Transportation=text, Passengers After Covid=number, #"% vs Pre-Pandemic"=nullable number, #"Pre-Pandemic Passengers"=number, #"% diff vs Pre-Pandemic"=number, Month Name=text, Year=number, Month and Year=text]}}),
-```
-
-```
     #"Added Index" = Table.AddIndexColumn(#"Grouped Rows", "Sort Month and Year", 1, 1, Int64.Type),
-```
-
-```
     #"Removed Other Columns" = Table.SelectColumns(#"Added Index",{"Count", "Sort Month and Year"}),
-```
-
-```
     #"Expanded {0}1" = Table.ExpandTableColumn(#"Removed Other Columns", "Count", {"Date", "Transportation", "Passengers After Covid", "% vs Pre-Pandemic", "Pre-Pandemic Passengers", "% diff vs Pre-Pandemic", "Month Name", "Year", "Month and Year"}, {"Date", "Transportation", "Passengers After Covid", "% vs Pre-Pandemic", "Pre-Pandemic Passengers", "% diff vs Pre-Pandemic", "Month Name", "Year", "Month and Year"}),
-```
-
-```
     
-```
-
-```
     // Added weekdays and weekends column
-```
-
-```
     #"Inserted Day Name" = Table.AddColumn(#"Expanded {0}1", "Day Name", each Date.DayOfWeekName([Date]), type text),
-```
-
-```
     #"Added Conditional Column" = Table.AddColumn(#"Inserted Day Name", "Week/Weekend", each if [Day Name] = "Saturday" then "Weekends" else if [Day Name] = "Sunday" then "Weekends" else "Weekdays", type text),
-```
-
-```
     
-```
-
-```
     // Final columns selection
-```
-
-```
     #"Removed Other Columns1" = Table.SelectColumns(#"Added Conditional Column",{"Date", "Transportation", "Passengers After Covid", "% vs Pre-Pandemic", "Pre-Pandemic Passengers", "% diff vs Pre-Pandemic", "Month Name", "Year", "Month and Year", "Sort Month and Year", "Week/Weekend"})
-```
-
-```
 in
-```
-
-```
     #"Removed Other Columns1"
 ```
 
