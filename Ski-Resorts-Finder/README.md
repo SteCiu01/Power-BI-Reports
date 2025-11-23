@@ -2,6 +2,8 @@
 
 "...you need to **build a dashboard to help skiers find their ideal destination**."
 
+https://app.powerbi.com/view?r=eyJrIjoiNzUwNWRlOGUtMDU4NS00YWM1LTgwOTktNWM2NTQwNmY0YjY5IiwidCI6IjhhNDk1ZGQwLThkNDEtNDcyYy1iMTljLTFhMzQzZjYxYmFhMSIsImMiOjl9
+
 # Approach Used:
 
 **The first step** was to ask a question to myself: who is the end-consumer of this dashboard? The answer is immediate: the skiers looking for an ideal destination. Therefore I thought to build a user-friendly tool with an interface that recalls a familiar holidays-boking website. This way, each person, with different requirements (more or less beginner or advanced skier, wish of a summer skiing, wish of a night skiing, need of a child friendly place, etc..) can explore the various resorts in the database and pick the one that best satisfy his/her needs.
