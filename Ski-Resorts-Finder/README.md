@@ -77,14 +77,13 @@ Before using the Resorts Data Table it was necessary to **clean-up 2 columns** (
 
 *(See below image for details)*
 
-<img width="2888" height="1527" alt="image" src="https://github.com/user-attachments/assets/05d48c71-53e8-4df8-a83a-50c612a0b15f" />
-
+<img width="1182" height="625" alt="image" src="https://github.com/user-attachments/assets/99065266-11be-4971-aff3-6983e25ce447" />
 
 **Duplicates (1/3):** Checking the latitude and longitude of the resorts it turned out that 3 resorts, that include different small locations/towns, were split in different rows, one for each small location/town but it does not mean each one of them is a different resort (that in fact has one lat./long. combination). Making a simple desktop research is easily findable that these 8 rows were in fact only 3 resorts. What I did was to compact them and to rename them, in accordance with my research.
 
 *(See below image for details)*
 
-<img width="1423" height="472" alt="image" src="https://github.com/user-attachments/assets/0795a90c-4084-4547-8a4f-bf55df43d9db" />
+<img width="1250" height="415" alt="image" src="https://github.com/user-attachments/assets/03ba29a5-f364-4a8e-8307-34a7311327e4" />
 
 **Duplicates (2/3):** also, the resorts *"Les 3 Vallees, Monte Rosa Ski, Grandvalira,  Via Lattea, SkiWelt Wilder Kaiser-Brixental, Les Portes du Soleil, Ski Amede, Skicircus, Ski Arlberg and Grandvalira"* are split into different duplicated rows. In this case each row contains a different small town name and has a different lat./long. combination. However, each row contains the same pieces of information when it comes to the resort price, kilometers of slopes, highest and lowest points, number of ski-lifts, ski lifts capacity etc., with exception for the first row among all the duplicated rows belonging to one resort that is the only one having information on the longest run. Therefore  I made a desktop research that proved that all these rows are actually duplications of one resort only, for each one of the above mentioned resorts. As result, also these resort have been compacted into 1 row only each, accordingly to my research.
 
