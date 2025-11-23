@@ -1,10 +1,10 @@
-# [The Challenge](https://mavenanalytics.io/challenges/maven-slopes-challenge)
+## [The Challenge](https://mavenanalytics.io/challenges/maven-slopes-challenge)
 
 "...you need to **build a dashboard to help skiers find their ideal destination**."
 
 [📊 Live Report](https://app.powerbi.com/view?r=eyJrIjoiNzUwNWRlOGUtMDU4NS00YWM1LTgwOTktNWM2NTQwNmY0YjY5IiwidCI6IjhhNDk1ZGQwLThkNDEtNDcyYy1iMTljLTFhMzQzZjYxYmFhMSIsImMiOjl9)
 
-# Approach Used:
+## Approach Used:
 
 **The first step** was to ask a question to myself: who is the end-consumer of this dashboard? The answer is immediate: the skiers looking for an ideal destination. Therefore I thought to build a user-friendly tool with an interface that recalls a familiar holidays-boking website. This way, each person, with different requirements (more or less beginner or advanced skier, wish of a summer skiing, wish of a night skiing, need of a child friendly place, etc..) can explore the various resorts in the database and pick the one that best satisfy his/her needs.
 
@@ -34,7 +34,7 @@
 
 **The third and last step** was to build this tool/dashboard so that this hypothetical user journey was possible.
 
-# Interesting Power BI development topics
+## Interesting Power BI development topics
 
 I would like to highlight the most interesting topics/techniques I used during the development of this dashboard and that allowed to level-up the overall users experience:
 
@@ -50,7 +50,7 @@ I would like to highlight the most interesting topics/techniques I used during t
 - **Usage of Power Point to build the background.**
 - **Level-up of the dashboard navigation using custom icons in .svg format** and their combination with blank buttons or using "clickable" gray backgrounds that provide a the "real website effect". 
 
-# About the dataset
+## About the dataset
 
 **Main Dataset:** dataset provided by Maven Analytics for the Maven Slopes Challenge.
 
@@ -69,7 +69,7 @@ This dataset contains 2 tables in CSV format:
 
 **Icons and Report Images:** big thanks to [www.flaticon.com](https://www.flaticon.com/) that provides access to these high quality contents
 
-# Data clean-up & Duplicates Removal
+## Data clean-up & Duplicates Removal
 
 Before using the Resorts Data Table it was necessary to **clean-up 2 columns** ("Resorts" and "Season") and to **erase few duplicates.**
 
