@@ -1,6 +1,6 @@
-# Power BI Reports
+<img width="78" height="79" alt="image" src="https://github.com/user-attachments/assets/529202e5-bedf-437a-a36e-acaac2d7fa1c" /> # Power BI Reports
 
-<img width="1303" height="368" alt="image" src="https://github.com/user-attachments/assets/6a48eb74-234b-409e-b529-c98f77908eea" />
+<img width="1254" height="332" alt="image" src="https://github.com/user-attachments/assets/94344ea5-b53d-4df3-a38f-66f9ab179ad6" />
 
 <hr>
 
