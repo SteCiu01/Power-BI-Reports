@@ -1,6 +1,8 @@
-## [The Challenge](https://mavenanalytics.io/challenges/maven-slopes-challenge)
+## The Challenge
 
 "...you need to **build a dashboard to help skiers find their ideal destination**."
+
+[Challenge Link](https://mavenanalytics.io/challenges/maven-slopes-challenge)
 
 [📊 Live Report](https://app.powerbi.com/view?r=eyJrIjoiNzUwNWRlOGUtMDU4NS00YWM1LTgwOTktNWM2NTQwNmY0YjY5IiwidCI6IjhhNDk1ZGQwLThkNDEtNDcyYy1iMTljLTFhMzQzZjYxYmFhMSIsImMiOjl9)
 
