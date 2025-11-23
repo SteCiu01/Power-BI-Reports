@@ -1,0 +1,17 @@
+let
+  Source = facts_questionnaire_results_PQWork_1_General_ETL, 
+  
+
+// kept only attributes 
+  #"Filtered rows" = Table.SelectRows(Source, each ([Question_Type] = "Number scale")), 
+  #"Changed column type" = Table.TransformColumnTypes(#"Filtered rows", {{"Answer", Int64.Type}}), 
+  
+
+// Cross-tables alignments
+  #"Removed columns" = Table.RemoveColumns(#"Changed column type", {"Answer_Choices"}), 
+  #"Renamed columns" = Table.RenameColumns(
+    #"Removed columns", 
+    {{"Answer_Choices_2", "Answer_Choices"}}
+  )
+in
+  #"Renamed columns"

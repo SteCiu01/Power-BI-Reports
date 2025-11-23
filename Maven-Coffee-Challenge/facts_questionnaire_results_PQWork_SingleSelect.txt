@@ -1,0 +1,258 @@
+let
+  Source = facts_questionnaire_results_PQWork_1_General_ETL, 
+  
+
+// kept only single select - removed those options that do not match the Answer Choices as there is something wrong here
+  #"Filtered rows" = Table.SelectRows(
+    Source, 
+    each ([Question_Type] = "Single select") and ([Answer] <> "Complex")
+  ), 
+  #"Added custom" = Table.AddColumn(
+    #"Filtered rows", 
+    "Answer-Question-Key", 
+    each Number.ToText([Question_Order]) & " - " & [Answer]
+  ), 
+  #"Filtered rows 1" = Table.SelectRows(
+    #"Added custom", 
+    each ([#"Answer-Question-Key"] <> "16 - Light")
+  ), 
+  #"Removed columns 2" = Table.RemoveColumns(#"Filtered rows 1", {"Answer-Question-Key"}), 
+  
+
+// Change in answer choices that will be needed later
+  #"Replaced value 5" = Table.ReplaceValue(
+    #"Removed columns 2", 
+    "More than $1,000", 
+    "More than $1000", 
+    Replacer.ReplaceText, 
+    {"Answer_Choices"}
+  ), 
+  
+
+// Steps for the creation of the Answer_Choices_2 for the single questions
+  #"Split column by delimiter" = Table.SplitColumn(
+    #"Replaced value 5", 
+    "Answer_Choices", 
+    Splitter.SplitTextByDelimiter(","), 
+    {
+      "Answer_Choices.1", 
+      "Answer_Choices.2", 
+      "Answer_Choices.3", 
+      "Answer_Choices.4", 
+      "Answer_Choices.5", 
+      "Answer_Choices.6", 
+      "Answer_Choices.7", 
+      "Answer_Choices.8", 
+      "Answer_Choices.9", 
+      "Answer_Choices.10", 
+      "Answer_Choices.11", 
+      "Answer_Choices.12"
+    }
+  ), 
+  #"Changed column type" = Table.TransformColumnTypes(
+    #"Split column by delimiter", 
+    {
+      {"Answer_Choices.1", type text}, 
+      {"Answer_Choices.2", type text}, 
+      {"Answer_Choices.3", type text}, 
+      {"Answer_Choices.4", type text}, 
+      {"Answer_Choices.5", type text}, 
+      {"Answer_Choices.6", type text}, 
+      {"Answer_Choices.7", type text}, 
+      {"Answer_Choices.8", type text}, 
+      {"Answer_Choices.9", type text}, 
+      {"Answer_Choices.10", type text}, 
+      {"Answer_Choices.11", type text}, 
+      {"Answer_Choices.12", type text}
+    }
+  ), 
+  #"Unpivoted only selected columns" = Table.Unpivot(
+    #"Changed column type", 
+    {
+      "Answer_Choices.1", 
+      "Answer_Choices.2", 
+      "Answer_Choices.3", 
+      "Answer_Choices.4", 
+      "Answer_Choices.5", 
+      "Answer_Choices.6", 
+      "Answer_Choices.7", 
+      "Answer_Choices.8", 
+      "Answer_Choices.9", 
+      "Answer_Choices.10", 
+      "Answer_Choices.11", 
+      "Answer_Choices.12"
+    }, 
+    "Attribute", 
+    "Value"
+  ), 
+  #"Reordered columns" = Table.ReorderColumns(
+    #"Unpivoted only selected columns", 
+    {
+      "Question_Order", 
+      "Submission_ID", 
+      "Question", 
+      "Answer_Choices_2", 
+      "Value", 
+      "Answer", 
+      "Survey_Section", 
+      "Question_Type", 
+      "Question_Original", 
+      "Notes", 
+      "Attribute"
+    }
+  ), 
+  #"Removed columns" = Table.RemoveColumns(#"Reordered columns", {"Attribute", "Answer_Choices_2"}), 
+  #"Changed column type 1" = Table.TransformColumnTypes(#"Removed columns", {{"Answer", type text}}), 
+  #"Renamed columns" = Table.RenameColumns(
+    #"Changed column type 1", 
+    {{"Value", "Answer_Choices_2"}}
+  ), 
+  
+
+// Aligned the wording of the Answer_Choices_2 with Answers
+  #"Trimmed text" = Table.TransformColumns(
+    #"Renamed columns", 
+    {
+      {"Answer_Choices_2", each Text.Trim(_), type text}, 
+      {"Answer", each Text.Trim(_), type nullable text}
+    }
+  ), 
+  #"Replaced value" = Table.ReplaceValue(
+    #"Trimmed text", 
+    ">65", 
+    ">65 years old", 
+    Replacer.ReplaceText, 
+    {"Answer_Choices_2"}
+  ), 
+  #"Replaced value 7" = Table.ReplaceValue(
+    #"Replaced value", 
+    "25-34", 
+    "25-34 years old", 
+    Replacer.ReplaceText, 
+    {"Answer_Choices_2"}
+  ), 
+  #"Replaced value 8" = Table.ReplaceValue(
+    #"Replaced value 7", 
+    "18-24", 
+    "18-24 years old", 
+    Replacer.ReplaceText, 
+    {"Answer_Choices_2"}
+  ), 
+  #"Replaced value 9" = Table.ReplaceValue(
+    #"Replaced value 8", 
+    "35-44", 
+    "35-44 years old", 
+    Replacer.ReplaceText, 
+    {"Answer_Choices_2"}
+  ), 
+  #"Replaced value 10" = Table.ReplaceValue(
+    #"Replaced value 9", 
+    "45-54", 
+    "45-54 years old", 
+    Replacer.ReplaceText, 
+    {"Answer_Choices_2"}
+  ), 
+  #"Replaced value 11" = Table.ReplaceValue(
+    #"Replaced value 10", 
+    "55-64", 
+    "55-64 years old", 
+    Replacer.ReplaceText, 
+    {"Answer_Choices_2"}
+  ), 
+  #"Replaced value 1" = Table.ReplaceValue(
+    #"Replaced value 11", 
+    "Coffee A", 
+    "A", 
+    Replacer.ReplaceText, 
+    {"Answer"}
+  ), 
+  #"Replaced value 2" = Table.ReplaceValue(
+    #"Replaced value 1", 
+    "Coffee B", 
+    "B", 
+    Replacer.ReplaceText, 
+    {"Answer"}
+  ), 
+  #"Replaced value 3" = Table.ReplaceValue(
+    #"Replaced value 2", 
+    "Coffee C", 
+    "C", 
+    Replacer.ReplaceText, 
+    {"Answer"}
+  ), 
+  #"Replaced value 4" = Table.ReplaceValue(
+    #"Replaced value 3", 
+    "Coffee D", 
+    "D", 
+    Replacer.ReplaceText, 
+    {"Answer"}
+  ), 
+  #"Replaced value 6" = Table.ReplaceValue(
+    #"Replaced value 4", 
+    "More than $1000", 
+    "More than $1,000", 
+    Replacer.ReplaceText, 
+    {"Answer_Choices_2"}
+  ), 
+  #"Replaced value 12" = Table.ReplaceValue(
+    #"Replaced value 6", 
+    "Blended drink (e.g. Frappuccino)", 
+    "Blended drink", 
+    Replacer.ReplaceText, 
+    {"Answer"}
+  ), 
+  
+
+// Steps for assigning 1 or 0 to the Answer: 1 when the Answer_Choices_2 matches the answer
+  #"Inserted conditional column" = Table.AddColumn(
+    #"Replaced value 12", 
+    "Answer2", 
+    each if [Answer] = [Answer_Choices_2] then 1 else 0
+  ), 
+  #"Reordered columns 1" = Table.ReorderColumns(
+    #"Inserted conditional column", 
+    {
+      "Question_Order", 
+      "Submission_ID", 
+      "Question", 
+      "Answer_Choices_2", 
+      "Answer", 
+      "Answer2", 
+      "Survey_Section", 
+      "Question_Type", 
+      "Question_Original", 
+      "Notes"
+    }
+  ), 
+  #"Removed columns 1" = Table.RemoveColumns(#"Reordered columns 1", {"Answer"}), 
+  #"Renamed columns 1" = Table.RenameColumns(#"Removed columns 1", {{"Answer2", "Answer"}}), 
+  #"Changed column type 2" = Table.TransformColumnTypes(
+    #"Renamed columns 1", 
+    {{"Answer", Int64.Type}}
+  ), 
+  
+
+// Cross-tables alignments
+  #"Reordered columns 2" = Table.ReorderColumns(
+    #"Changed column type 2", 
+    {
+      "Submission_ID", 
+      "Question_Order", 
+      "Question", 
+      "Answer_Choices_2", 
+      "Answer", 
+      "Survey_Section", 
+      "Question_Type", 
+      "Question_Original", 
+      "Daily_Out_of_Home_Coffee_Drinkers", 
+      "Daily_Cafe_Coffee_Drinkers", 
+      "Notes"
+    }
+  ), 
+  #"Renamed columns 2" = Table.RenameColumns(
+    #"Reordered columns 2", 
+    {{"Answer_Choices_2", "Answer_Choices"}}
+  )
+
+in
+  #"Renamed columns 2"

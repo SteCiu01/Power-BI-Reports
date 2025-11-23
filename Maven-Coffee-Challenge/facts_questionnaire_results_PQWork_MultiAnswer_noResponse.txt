@@ -1,0 +1,31 @@
+let
+  Source = facts_questionnaire_results_PQWork_1_General_ETL, 
+  
+
+//Isolation of those questions where the respondent did not select any multiple answer but however it results in false for all the multiple options instead of blank
+  #"Filtered rows" = Table.SelectRows(
+    Source, 
+    each ([Question_Type] = "Multiple selection") and ([Answer_Choices_2] <> "")
+  ), 
+  #"Choose columns" = Table.SelectColumns(
+    #"Filtered rows", 
+    {"Submission_ID", "Question_Order", "Answer"}
+  ), 
+  #"Removed duplicates" = Table.Distinct(
+    #"Choose columns", 
+    {"Submission_ID", "Question_Order", "Answer"}
+  ), 
+  #"Filtered rows 1" = Table.SelectRows(
+    #"Removed duplicates", 
+    each ([Answer] = false or [Answer] = true)
+  ), 
+  #"Grouped rows" = Table.Group(
+    #"Filtered rows 1", 
+    {"Submission_ID", "Question_Order"}, 
+    {{"Count", each List.Count(List.Distinct([Answer])), Int64.Type}}
+  ), 
+  #"Filtered rows 2" = Table.SelectRows(#"Grouped rows", each ([Count] <> 2)), 
+  #"Sorted rows" = Table.Sort(#"Filtered rows 2", {{"Question_Order", Order.Ascending}})
+
+in
+  #"Sorted rows"

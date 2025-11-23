@@ -1,0 +1,75 @@
+let
+  Source = facts_questionnaire_results_PQWork_1_General_ETL, 
+  
+
+// Kept only multiple selection questions and their options with true/false for each, removing those multiple questions with blank answer
+  #"Filtered rows" = Table.SelectRows(
+    Source, 
+    each ([Question_Type] = "Multiple selection") and ([Answer_Choices_2] <> "")
+  ), 
+  
+
+//Operations for removing those multiple questions with blank answer but with, for some reasons, not blank true/false, but only with false in all the options
+  #"Merged queries" = Table.NestedJoin(
+    #"Filtered rows", 
+    {"Submission_ID", "Question_Order"}, 
+    facts_questionnaire_results_PQWork_MultiAnswer_noResponse, 
+    {"Submission_ID", "Question_Order"}, 
+    "facts_questionnaire_results_PQWork_MultiAnswer_noResponse", 
+    JoinKind.LeftOuter
+  ), 
+  #"Expanded facts_questionnaire_results_PQWork_MultiAnswer_noResponse" = Table.ExpandTableColumn(
+    #"Merged queries", 
+    "facts_questionnaire_results_PQWork_MultiAnswer_noResponse", 
+    {"Count"}, 
+    {"Count"}
+  ), 
+  #"Replaced value 2" = Table.ReplaceValue(
+    #"Expanded facts_questionnaire_results_PQWork_MultiAnswer_noResponse", 
+    null, 
+    0, 
+    Replacer.ReplaceValue, 
+    {"Count"}
+  ), 
+  #"Changed column type 1" = Table.TransformColumnTypes(
+    #"Replaced value 2", 
+    {{"Count", type text}, {"Answer", type text}}
+  ), 
+  #"Added custom" = Table.AddColumn(
+    #"Changed column type 1", 
+    "Custom", 
+    each [Answer] & " - " & [Count]
+  ), 
+  #"Filtered rows 1" = Table.SelectRows(#"Added custom", each ([Custom] <> "false - 1")), 
+  #"Removed columns 1" = Table.RemoveColumns(#"Filtered rows 1", {"Custom", "Count"}), 
+  #"Changed column type 2" = Table.TransformColumnTypes(
+    #"Removed columns 1", 
+    {{"Answer", type logical}}
+  ), 
+  
+
+// transformed true/false into binary 1/0 and changed column type
+  #"Replaced value" = Table.ReplaceValue(
+    #"Changed column type 2", 
+    false, 
+    0, 
+    Replacer.ReplaceValue, 
+    {"Answer"}
+  ), 
+  #"Replaced value 1" = Table.ReplaceValue(
+    #"Replaced value", 
+    true, 
+    1, 
+    Replacer.ReplaceValue, 
+    {"Answer"}
+  ), 
+  #"Changed column type" = Table.TransformColumnTypes(#"Replaced value 1", {{"Answer", Int64.Type}}), 
+  // Cross-tables alignments
+  #"Removed columns" = Table.RemoveColumns(#"Changed column type", {"Answer_Choices"}), 
+  #"Renamed columns" = Table.RenameColumns(
+    #"Removed columns", 
+    {{"Answer_Choices_2", "Answer_Choices"}}
+  )
+
+in
+  #"Renamed columns"

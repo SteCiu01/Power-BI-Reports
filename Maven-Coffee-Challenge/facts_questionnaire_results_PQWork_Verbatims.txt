@@ -1,0 +1,25 @@
+let
+  Source = facts_questionnaire_results_PQWork_1_General_ETL, 
+  
+
+// kept only verbatims
+  #"Filtered rows" = Table.SelectRows(
+    Source, 
+    each ([Question_Type] = "Text")
+      and (
+        [Notes]
+          <> "Supposedly available if ""Other"" was selected in question 14, but it doesn't render in the survey website"
+      )
+  ), 
+  
+
+// set answer column type to text
+  #"Changed column type" = Table.TransformColumnTypes(#"Filtered rows", {{"Answer", type text}}), 
+  // Cross-tables alignments
+  #"Removed columns" = Table.RemoveColumns(#"Changed column type", {"Answer_Choices"}), 
+  #"Renamed columns" = Table.RenameColumns(
+    #"Removed columns", 
+    {{"Answer_Choices_2", "Answer_Choices"}}
+  )
+in
+  #"Renamed columns"

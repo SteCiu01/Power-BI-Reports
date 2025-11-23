@@ -1,0 +1,101 @@
+let
+  Source = facts_questionnaire_results_PQWork_1_General_ETL, 
+  
+
+// kept only Y/N questions
+  #"Filtered rows" = Table.SelectRows(Source, each ([Question_Type] = "Yes/No")), 
+  
+
+//Steps for creating the Answer_Choices_2
+  #"Split column by delimiter" = Table.SplitColumn(
+    #"Filtered rows", 
+    "Answer_Choices", 
+    Splitter.SplitTextByDelimiter(","), 
+    {"Answer_Choices.1", "Answer_Choices.2"}
+  ), 
+  #"Unpivoted only selected columns" = Table.Unpivot(
+    #"Split column by delimiter", 
+    {"Answer_Choices.1", "Answer_Choices.2"}, 
+    "Attribute", 
+    "Value"
+  ), 
+  #"Removed columns" = Table.RemoveColumns(#"Unpivoted only selected columns", {"Attribute"}), 
+  #"Reordered columns" = Table.ReorderColumns(
+    #"Removed columns", 
+    {
+      "Question_Order", 
+      "Submission_ID", 
+      "Question", 
+      "Answer_Choices_2", 
+      "Value", 
+      "Answer", 
+      "Survey_Section", 
+      "Question_Type", 
+      "Question_Original", 
+      "Notes"
+    }
+  ), 
+  
+
+// Steps for Assigning 1 to Y and 0 to N and re-organizing the columns
+  #"Trimmed text" = Table.TransformColumns(
+    #"Reordered columns", 
+    {
+      {"Value", each Text.Trim(Text.From(_)), type text}, 
+      {"Answer", each Text.Trim(Text.From(_)), type nullable text}
+    }
+  ), 
+  #"Inserted conditional column" = Table.AddColumn(
+    #"Trimmed text", 
+    "Custom", 
+    each if [Answer] = [Value] then 1 else 0
+  ), 
+  #"Reordered columns 1" = Table.ReorderColumns(
+    #"Inserted conditional column", 
+    {
+      "Question_Order", 
+      "Submission_ID", 
+      "Question", 
+      "Answer_Choices_2", 
+      "Value", 
+      "Answer", 
+      "Custom", 
+      "Survey_Section", 
+      "Question_Type", 
+      "Question_Original", 
+      "Notes"
+    }
+  ), 
+  #"Removed columns 1" = Table.RemoveColumns(#"Reordered columns 1", {"Answer_Choices_2", "Answer"}), 
+  #"Renamed columns" = Table.RenameColumns(
+    #"Removed columns 1", 
+    {{"Value", "Answer_Choices_2"}, {"Custom", "Answer"}}
+  ), 
+  #"Changed column type" = Table.TransformColumnTypes(#"Renamed columns", {{"Answer", Int64.Type}}), 
+  
+
+// Cross-tables alignments
+  #"Reordered columns 2" = Table.ReorderColumns(
+    #"Changed column type", 
+    {
+      "Submission_ID", 
+      "Question_Order", 
+      "Question", 
+      "Answer_Choices_2", 
+      "Answer", 
+      "Survey_Section", 
+      "Question_Type", 
+      "Question_Original", 
+      "Daily_Out_of_Home_Coffee_Drinkers", 
+      "Daily_Cafe_Coffee_Drinkers", 
+      "Notes"
+    }
+  ), 
+  #"Renamed columns 1" = Table.RenameColumns(
+    #"Reordered columns 2", 
+    {{"Answer_Choices_2", "Answer_Choices"}}
+  )
+
+
+in
+  #"Renamed columns 1"
