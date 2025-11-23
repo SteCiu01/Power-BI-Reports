@@ -16,3 +16,5 @@ In the projects' descriptions I include links, codes and tutorials so everyone c
 [Maven Coffee Challenge](https://github.com/SteCiu01/Power-BI-Reports/tree/main/Maven-Coffee-Challenge)
 
 [Maven Commuter Challenge](https://github.com/SteCiu01/Power-BI-Reports/blob/main/Maven-Commuter-Challenge/README.md)
+
+[The History of the Space Race](https://github.com/SteCiu01/Power-BI-Reports/tree/main/The%20History%20of%20the%20Space%20Race%20%5BFinalist%5D)
