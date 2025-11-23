@@ -11,3 +11,5 @@ In these projects' descriptions I include links, codes and tutorials so everyone
 ## Reports for Data Challenges
 
 [Ski Resorts Finder](https://github.com/SteCiu01/Power-BI-Reports/tree/main/Ski-Resorts-Finder)
+
+[Maven Coffee Challenge](https://github.com/SteCiu01/Power-BI-Reports/tree/main/Maven-Coffee-Challenge)
