@@ -1,4 +1,4 @@
-## [The Challenge](https://mavenanalytics.io/challenges/maven-slopes-challenge)
+# [The Challenge](https://mavenanalytics.io/challenges/maven-slopes-challenge)
 
 "...you need to **build a dashboard to help skiers find their ideal destination**."
 
