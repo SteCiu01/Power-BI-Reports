@@ -1,0 +1,190 @@
+let
+  Source = facts_questionnaire_results_landing, 
+  
+
+// Added "Daily_Out_of_Home_Coffee_Drinkers", "Daily_Cafe_Coffee_Drinkers" colummns to identify the target groups
+  #"Added DOoHCD" = Table.AddColumn(
+    Source, 
+    "Daily_Out_of_Home_Coffee_Drinkers", 
+    each 
+      if List.Contains(
+        {"1", "2", "3", "4", "More than 4"}, 
+        [#"How_many_cups_of_coffee_do_you_typically_drink_per_day?"]
+      )
+        and [#"Where_do_you_typically_drink_coffee?__At_the_office_"]
+        = true or [#"Where_do_you_typically_drink_coffee?__On_the_go_"]
+        = true or [#"Where_do_you_typically_drink_coffee?__At_a_cafe_"]
+        = true
+      then
+        1
+      else
+        0
+  ), 
+  #"Added DCCD" = Table.AddColumn(
+    #"Added DOoHCD", 
+    "Daily_Cafe_Coffee_Drinkers", 
+    each 
+      if List.Contains(
+        {"1", "2", "3", "4", "More than 4"}, 
+        [#"How_many_cups_of_coffee_do_you_typically_drink_per_day?"]
+      )
+        and [#"Where_do_you_typically_drink_coffee?__At_a_cafe_"]
+        = true
+      then
+        1
+      else
+        0
+  ), 
+  #"Changed column type" = Table.TransformColumnTypes(
+    #"Added DCCD", 
+    {{"Daily_Out_of_Home_Coffee_Drinkers", Int64.Type}, {"Daily_Cafe_Coffee_Drinkers", Int64.Type}}
+  ), 
+  
+
+// Fixed column names as they were changed during migration from csv to Lakehouse
+  #"Fixed some column names" = Table.RenameColumns(
+    #"Changed column type", 
+    {
+      {
+        "Do_you_feel_like_you’re_getting_good_value_for_your_money_with_regards_to_your_c", 
+        "Do_you_feel_like_you’re_getting_good_value_for_your_money_with_regards_to_your_coffee_equipment?"
+      }, 
+      {
+        "Do_you_feel_like_you’re_getting_good_value_for_your_money_when_you_buy_coffee_at", 
+        "Do_you_feel_like_you’re_getting_good_value_for_your_money_when_you_buy_coffee_at_a_cafe?"
+      }, 
+      {
+        "Before_today's_tasting__which_of_the_following_best_described_what_kind_of_coffe", 
+        "Before_today's_tasting__which_of_the_following_best_described_what_kind_of_coffee_you_like?"
+      }
+    }
+  ), 
+  
+
+// Unpivot columns
+  #"Unpivoted questions" = Table.UnpivotOtherColumns(
+    #"Fixed some column names", 
+    {"Submission_ID", "Daily_Out_of_Home_Coffee_Drinkers", "Daily_Cafe_Coffee_Drinkers"}, 
+    "Attribute", 
+    "Value"
+  ), 
+  #"Reordered columns 2" = Table.ReorderColumns(
+    #"Unpivoted questions", 
+    {
+      "Submission_ID", 
+      "Attribute", 
+      "Value", 
+      "Daily_Out_of_Home_Coffee_Drinkers", 
+      "Daily_Cafe_Coffee_Drinkers"
+    }
+  ), 
+  #"Renamed question and answer columns" = Table.RenameColumns(
+    #"Reordered columns 2", 
+    {{"Attribute", "Question"}, {"Value", "Answer"}}
+  ), 
+  
+
+// Remove the "_" that ws added while adding the data to the Lakehouse
+  #"Removed DB syntax from question names" = Table.ReplaceValue(
+    #"Renamed question and answer columns", 
+    "_", 
+    " ", 
+    Replacer.ReplaceText, 
+    {"Question"}
+  ), 
+  #"Trimmed text" = Table.TransformColumns(
+    #"Removed DB syntax from question names", 
+    {{"Question", each Text.Trim(_), type nullable text}}
+  ), 
+  
+
+//Creation of proper single question column that we need to pull in all the Questions' details
+  #"Duplicated column Question" = Table.DuplicateColumn(
+    #"Trimmed text", 
+    "Question", 
+    "Question - Copy"
+  ), 
+  #"Reordered columns" = Table.ReorderColumns(
+    #"Duplicated column Question", 
+    {"Submission_ID", "Question - Copy", "Question", "Answer"}
+  ), 
+  #"Renamed Question Original" = Table.RenameColumns(
+    #"Reordered columns", 
+    {{"Question - Copy", "Question_Original"}}
+  ), 
+  #"From Question removed text after ""?""" = Table.TransformColumns(
+    #"Renamed Question Original", 
+    {
+      {
+        "Question", 
+        each if Text.Contains(_, "?") then Text.BeforeDelimiter(_, "?", 0) & "?" else _, 
+        type text
+      }
+    }
+  ), 
+  #"Re-put commas in questions when required" = Table.ReplaceValue(
+    #"From Question removed text after ""?""", 
+    "  ", 
+    ", ", 
+    Replacer.ReplaceText, 
+    {"Question"}
+  ), 
+  
+
+// pulled in all the questions'details from the questions dimension table
+  #"Merged queries" = Table.NestedJoin(
+    #"Re-put commas in questions when required", 
+    {"Question"}, 
+    dim_questions_PQWork, 
+    {"Question"}, 
+    "dim_questions_landing_PQWork", 
+    JoinKind.LeftOuter
+  ), 
+  #"Expanded dim_questions_landing_PQWork 1" = Table.ExpandTableColumn(
+    #"Merged queries", 
+    "dim_questions_landing_PQWork", 
+    {"Question_Order", "Question", "Survey_Section", "Question_Type", "Answer_Choices", "Notes"}, 
+    {"Question_Order", "Question.1", "Survey_Section", "Question_Type", "Answer_Choices", "Notes"}
+  ), 
+  #"Removed columns not needed" = Table.RemoveColumns(
+    #"Expanded dim_questions_landing_PQWork 1", 
+    {"Question.1"}
+  ), 
+  // sorte the table in a easy to monitor way
+  #"Sorted rows by ID and question order" = Table.Sort(
+    #"Removed columns not needed", 
+    {{"Submission_ID", Order.Ascending}, {"Question_Order", Order.Ascending}}
+  ), 
+  
+
+// inserted the Pre_Set_Answer column that is needed to have the multiple choice questions options, finally, reordered columns in a friendly way
+  #"Inserted text after delimiter" = Table.AddColumn(
+    #"Sorted rows by ID and question order", 
+    "Answer_Choices_2", 
+    each Text.AfterDelimiter([#"Question_Original"], "?", 0), 
+    type text
+  ), 
+  #"Reordered columns 1" = Table.ReorderColumns(
+    #"Inserted text after delimiter", 
+    {
+      "Submission_ID", 
+      "Question_Order", 
+      "Question", 
+      "Answer_Choices_2", 
+      "Answer", 
+      "Survey_Section", 
+      "Question_Type", 
+      "Answer_Choices", 
+      "Question_Original", 
+      "Daily_Out_of_Home_Coffee_Drinkers", 
+      "Daily_Cafe_Coffee_Drinkers", 
+      "Notes"
+    }
+  ), 
+  
+
+// removed for each respondent those question where they didn't reply
+  #"Filtered rows" = Table.SelectRows(#"Reordered columns 1", each ([Answer] <> ""))
+
+in
+  #"Filtered rows"
