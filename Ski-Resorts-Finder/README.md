@@ -6,6 +6,9 @@
 
 ## Maven Slopes Challenge - Ski Resorts Finder [🏆 Winner]
 
+<img width="806" height="457" alt="image" src="https://github.com/user-attachments/assets/68567542-7c94-43c6-9d82-8be6eac88d98" />
+
+
 Want to go skiing? With the Ski Resorts Finder, not only you can find your ideal ski resort, you can also trigger a Boking.com search to find available hotels/flats to rent nearby.
 
 [📊 Live Report](https://app.powerbi.com/view?r=eyJrIjoiNzUwNWRlOGUtMDU4NS00YWM1LTgwOTktNWM2NTQwNmY0YjY5IiwidCI6IjhhNDk1ZGQwLThkNDEtNDcyYy1iMTljLTFhMzQzZjYxYmFhMSIsImMiOjl9)
