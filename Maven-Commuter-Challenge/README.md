@@ -6,7 +6,8 @@ Use any data tool(s) at your disposal to&nbsp;**create an interactive visual or 
 
 # Maven Commuter Challenge [Finalist]
 
-<img width="810" height="453" alt="image" src="https://github.com/user-attachments/assets/4d354451-ecd2-4e39-8f86-f95784713390" /><br>
+![Uploading 3 - Maven Commuter Challenge.png…]()
+ /><br>
 
 Interactive visuals aimed to illustrate the post-pandemic ridership recovery trends across the MTA's services.
 
