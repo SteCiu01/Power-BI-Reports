@@ -394,69 +394,69 @@ DIVIDE(
 
 ```
 Tooltip Main= 
-
-VAR PerChange = 
-if([% Change vs. Pre-Pandemic] &lt;= 0, 
+VAR PerChange =
+if([% Change vs. Pre-Pandemic] <= 0,
 FORMAT([% Change vs. Pre-Pandemic], "#0.#%"),
 FORMAT([% Change vs. Pre-Pandemic], "+#0.#%")
 )
 
-VAR pre_pand = 
+VAR pre_pand =
 FORMAT([Pre-Pandemic Ridership], "#,###")
 
-VAR post_pand = 
+VAR post_pand =
 FORMAT([Post-Pandemic Ridership], "#,###")
 
 VAR service =
 IF(
-&nbsp; &nbsp; ISFILTERED(MTA_Daily_Ridership[Transportation]),
-&nbsp; &nbsp; IF(
-&nbsp; &nbsp; &nbsp; &nbsp; DISTINCTCOUNT(MTA_Daily_Ridership[Transportation]) = 1,
-&nbsp; &nbsp; &nbsp; &nbsp; SELECTEDVALUE(MTA_Daily_Ridership[Transportation]),
-&nbsp; &nbsp; &nbsp; &nbsp; IF(
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; DISTINCTCOUNT(MTA_Daily_Ridership[Transportation]) = 7,
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "All Services",
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; CONCATENATEX(
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; VALUES(MTA_Daily_Ridership[Transportation]),
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; MTA_Daily_Ridership[Transportation],
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ", ",
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; MTA_Daily_Ridership[Transportation],
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ASC
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; )
-&nbsp; &nbsp; &nbsp; &nbsp; )
-&nbsp; &nbsp; ),
-&nbsp; &nbsp; "All Services"
+    ISFILTERED(MTA_Daily_Ridership[Transportation]),
+    IF(
+        DISTINCTCOUNT(MTA_Daily_Ridership[Transportation]) = 1,
+        SELECTEDVALUE(MTA_Daily_Ridership[Transportation]),
+        IF(
+            DISTINCTCOUNT(MTA_Daily_Ridership[Transportation]) = 7,
+            "All Services",
+            CONCATENATEX(
+                VALUES(MTA_Daily_Ridership[Transportation]),
+                MTA_Daily_Ridership[Transportation],
+                ", ",
+                MTA_Daily_Ridership[Transportation],
+                ASC
+            )
+        )
+    ),
+    "All Services"
 )
 
-VAR PostP_marker = "<span style="display:inline-block; width:8px; height:8px; background-color:#2360A5; border-radius:50%; margin-right:5px; border:1px solid #2360A5;"></span>"
-VAR PreP_marker = "<span style="display:inline-block; width:8px; height:8px; background-color:#808080; border-radius:50%; margin-right:5px; border:1px solid #808080;"></span>"
+VAR PostP_marker = "<span style='display:inline-block; width:8px; height:8px; background-color:#2360A5; border-radius:50%; margin-right:5px; border:1px solid #2360A5;'></span>"
+VAR PreP_marker = "<span style='display:inline-block; width:8px; height:8px; background-color:#808080; border-radius:50%; margin-right:5px; border:1px solid #808080;'></span>"
 
 RETURN
-" <b> MTA Service: " &amp; "<span style="font-size: 13px;">" &amp; service &amp; "</span><br><br>" &amp; 
-"ㅤ" &amp; PreP_marker &amp; "Pre-Pandemic Monthly Ridership*: " &amp; "<span style="font-size: 13px;">" &amp; pre_pand &amp; "</span><br><br>" &amp; 
-"ㅤ" &amp; PostP_marker &amp; "Post-Pandemic Monthly Ridership: "&amp; "<span style="font-size: 13px;">" &amp; post_pand &amp; "</span><br><br>" &amp; 
-"ㅤ% Change vs. Pre-Pandemic Comparable Month: " &amp; "<span style="font-size: 13px;">" &amp; PerChange &amp; "</span><br>"
-
+" <b> MTA Service: " & "<span style='font-size: 13px;'>" & service & "</span><br><br>" &
+"ㅤ" & PreP_marker & "Pre-Pandemic Monthly Ridership*: " & "<span style='font-size: 13px;'>" & pre_pand & "</span><br><br>" &
+"ㅤ" & PostP_marker & "Post-Pandemic Monthly Ridership: "& "<span style='font-size: 13px;'>" & post_pand & "</span><br><br>" &
+"ㅤ% Change vs. Pre-Pandemic Comparable Month: " & "<span style='font-size: 13px;'>" & PerChange & "</span><br>"
 ```
 
 4.2 Title (top left corner of the tooltip)
 
 ```
+Tooltip Title = 
 VAR mon_year = SELECTEDVALUE(MTA_Daily_Ridership[Month and Year])
 Var dayofweek = 
 IF(
-&nbsp; &nbsp; DISTINCTCOUNT(
-&nbsp; &nbsp; &nbsp; &nbsp; MTA_Daily_Ridership[Week/Weekend]
-&nbsp; &nbsp; ) = 1, 
-&nbsp; &nbsp; if(SELECTEDVALUE(MTA_Daily_Ridership[Week/Weekend]) = "Weekends", "<i> (Weekends Only)</i>",
-&nbsp; &nbsp; if(SELECTEDVALUE(MTA_Daily_Ridership[Week/Weekend]) = "Weekdays", "<i> (Weekdays Only)</i>"
-&nbsp; &nbsp; )),
-&nbsp; &nbsp; ""
-) &nbsp;
+    DISTINCTCOUNT(
+        MTA_Daily_Ridership[Week/Weekend]
+    ) = 1, 
+    if(SELECTEDVALUE(MTA_Daily_Ridership[Week/Weekend]) = "Weekends", "<i> (Weekends Only)</i>",
+    if(SELECTEDVALUE(MTA_Daily_Ridership[Week/Weekend]) = "Weekdays", "<i> (Weekdays Only)</i>"
+    )),
+    ""
+)  
 
 RETURN
 
-" <b> " &amp; mon_year &amp; dayofweek 
+" <b> " & mon_year & dayofweek 
+
 ```
 
- </b></b>
+
