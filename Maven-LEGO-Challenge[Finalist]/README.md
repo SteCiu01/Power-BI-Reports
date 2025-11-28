@@ -2,6 +2,8 @@
 
 "For the **Maven LEGO Challenge**, you'll need to stack your imagination and analytical prowess to piece together an interactive dashboard or visual that lets users explore the history and evolution of LEGO sets from the past 5 decades."
 
+[Full Challenge Link](https://mavenanalytics.io/challenges/maven-lego-challenge)
+
 ## Maven LEGO Challenge - LEGO Sets Explorer [Finalist]
 
 <img width="1775" height="1003" alt="5 - Maven Lego Challenge" src="https://github.com/user-attachments/assets/16c668c2-07f9-4cd9-853c-fff7f6758d2e" />
