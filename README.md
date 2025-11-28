@@ -27,7 +27,7 @@ In the projects' descriptions I include links, codes and tutorials so everyone c
 
 <div align="Left">
 
-## 🏆 Winners
+### 🏆 Winners
 
 <table border="0">
 <tr>
@@ -50,7 +50,7 @@ In the projects' descriptions I include links, codes and tutorials so everyone c
 
 <br/>
 
-## 🎯 Finalists
+### 🎯 Finalists
 
 <table border="0">
 <tr>
