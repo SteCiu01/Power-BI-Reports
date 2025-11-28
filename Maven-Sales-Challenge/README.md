@@ -6,7 +6,8 @@ Create an **interactive dashboard that enables sales managers to track their tea
 
 # Maven Sales Challenge - Sales Teams Performance Tracker
 
-https://github.com/user-attachments/assets/479112b5-a7a1-4dd6-ad68-503501df160a
+![6-MavenSalesChallenge-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/c9378dbb-e0a6-4f82-9fca-e86956bdea56)
+<br><br>
 
 Interactive sales dashboard designed to assist Sales Team Managers in monitoring their teams’ performance.
 
