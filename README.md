@@ -9,7 +9,7 @@ The challenges I took part are organised by Maven Analytics, my favourite analyt
 
 In the projects' descriptions I include links, codes and tutorials so everyone can ideally try to replicate my development techniques. 
 
-## Reports for Data Challenges
+## Reports from Data Challenges
 
 [Maven Slopes Challenge - Ski Resorts Finder [🏆 Winner]](https://github.com/SteCiu01/Power-BI-Reports/tree/main/Ski-Resorts-Finder)<br>
 
