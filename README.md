@@ -12,6 +12,7 @@ In the projects' descriptions I include links, codes and tutorials so everyone c
 ## Reports for Data Challenges
 
 [Maven Slopes Challenge - Ski Resorts Finder [🏆 Winner]](https://github.com/SteCiu01/Power-BI-Reports/tree/main/Ski-Resorts-Finder)
+<b><a href="https://github.com/SteCiu01/Power-BI-Reports/blob/main/Maven-Commuter-Challenge/README.md">Maven Commuter Challenge</a></b>
 
 [Maven Coffee Challenge [🏆 Winner]](https://github.com/SteCiu01/Power-BI-Reports/tree/main/Maven-Coffee-Challenge)
 
@@ -20,62 +21,3 @@ In the projects' descriptions I include links, codes and tutorials so everyone c
 [The History of the Space Race[Finalist]](https://github.com/SteCiu01/Power-BI-Reports/tree/main/The%20History%20of%20the%20Space%20Race%20%5BFinalist%5D)
 
 [Maven LEGO Challenge - LEGO Sets Explorer [Finalist]](https://github.com/SteCiu01/Power-BI-Reports/tree/main/Maven-LEGO-Challenge%5BFinalist%5D)
-
-
----------------------------------------
-
-
-<div align="Left">
-
-### 🏆 Winners
-
-<table border="0">
-<tr>
-<td width="50%" align="center" style="border: none;">
-<b><a href="https://github.com/SteCiu01/Power-BI-Reports/tree/main/Ski-Resorts-Finder">Maven Slopes Challenge - Ski Resorts Finder</a></b>
-<br/><br/>
-<a href="https://github.com/SteCiu01/Power-BI-Reports/tree/main/Ski-Resorts-Finder">
-<img src="https://github.com/user-attachments/assets/b9806d78-ef09-485d-9f6d-a92a24f34713" alt="Maven Slopes Challenge - Ski Resorts Finder" width="95%"/>
-</a>
-</td>
-<td width="50%" align="center" style="border: none;">
-<b><a href="https://github.com/SteCiu01/Power-BI-Reports/tree/main/Maven-Coffee-Challenge">Maven Coffee Challenge</a></b>
-<br/><br/>
-<a href="https://github.com/SteCiu01/Power-BI-Reports/tree/main/Maven-Coffee-Challenge">
-<img src="https://github.com/user-attachments/assets/92c723cb-d985-41f9-a107-ac3248f6ef33" alt="Maven Coffee Challenge" width="95%"/>
-</a>
-</td>
-</tr>
-</table>
-
-<br/>
-
-### 🎯 Finalists
-
-<table border="0">
-<tr>
-<td width="33%" align="center" style="border: none;">
-<b><a href="https://github.com/SteCiu01/Power-BI-Reports/blob/main/Maven-Commuter-Challenge/README.md">Maven Commuter Challenge</a></b>
-<br/><br/>
-<a href="https://github.com/SteCiu01/Power-BI-Reports/blob/main/Maven-Commuter-Challenge/README.md">
-<img src="https://github.com/user-attachments/assets/058336ae-a826-467f-846a-c93f84661d7e" alt="Maven Commuter Challenge" width="95%"/>
-</a>
-</td>
-<td width="33%" align="center" style="border: none;">
-<b><a href="https://github.com/SteCiu01/Power-BI-Reports/tree/main/The%20History%20of%20the%20Space%20Race%20%5BFinalist%5D">The History of the Space Race</a></b>
-<br/><br/>
-<a href="https://github.com/SteCiu01/Power-BI-Reports/tree/main/The%20History%20of%20the%20Space%20Race%20%5BFinalist%5D">
-<img src="https://github.com/user-attachments/assets/cebb8afa-ded7-4e01-9535-673698af65be" alt="The History of the Space Race" width="95%"/>
-</a>
-</td>
-<td width="33%" align="center" style="border: none;">
-<b><a href="https://github.com/SteCiu01/Power-BI-Reports/tree/main/Maven-LEGO-Challenge%5BFinalist%5D">Maven LEGO Challenge - LEGO Sets Explorer</a></b>
-<br/><br/>
-<a href="https://github.com/SteCiu01/Power-BI-Reports/tree/main/Maven-LEGO-Challenge%5BFinalist%5D">
-<img src="https://github.com/user-attachments/assets/16c668c2-07f9-4cd9-853c-fff7f6758d2e" alt="Maven LEGO Challenge - LEGO Sets Explorer" width="95%"/>
-</a>
-</td>
-</tr>
-</table>
-
-</div>
