@@ -17,7 +17,7 @@ In the projects' descriptions I include links, codes and tutorials so everyone c
 
 [Maven Commuter Challenge [Finalist]](https://github.com/SteCiu01/Power-BI-Reports/blob/main/Maven-Commuter-Challenge/README.md)
 
-[Maven Space Challenge - The History of the Space Race[Finalist]](https://github.com/SteCiu01/Power-BI-Reports/tree/main/The%20History%20of%20the%20Space%20Race%20%5BFinalist%5D)
+[Maven Space Challenge - The History of the Space Race[Finalist]](https://github.com/SteCiu01/Power-BI-Reports/blob/main/Maven-Space-Challenge%5BFinalist%5D/README.md)
 
 [Maven LEGO Challenge - LEGO Sets Explorer [Finalist]](https://github.com/SteCiu01/Power-BI-Reports/tree/main/Maven-LEGO-Challenge%5BFinalist%5D)
 
