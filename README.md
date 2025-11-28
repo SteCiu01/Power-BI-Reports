@@ -13,7 +13,7 @@ In the projects' descriptions I include links, codes and tutorials so everyone c
 
 [Maven Slopes Challenge [🏆 Winner] - Ski Resorts Finder](https://github.com/SteCiu01/Power-BI-Reports/tree/main/Ski-Resorts-Finder)
 
-[Maven Coffee Challenge] [🏆 Winner]](https://github.com/SteCiu01/Power-BI-Reports/tree/main/Maven-Coffee-Challenge)
+[Maven Coffee Challenge [🏆 Winner]](https://github.com/SteCiu01/Power-BI-Reports/tree/main/Maven-Coffee-Challenge)
 
 [Maven Commuter Challenge [Finalist]](https://github.com/SteCiu01/Power-BI-Reports/blob/main/Maven-Commuter-Challenge/README.md)
 
