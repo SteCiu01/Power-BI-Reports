@@ -204,6 +204,9 @@ VAR SVGImageURL =
 RETURN
 SVGImageURL
 ```
+
+This is the final outcome for the Won Deals in the Matrix: 
+
 <img width="940" height="498" alt="image" src="https://github.com/user-attachments/assets/edaa42c2-3ba4-4feb-b6b5-965073c2a834" />
 
 The codes used are below:
