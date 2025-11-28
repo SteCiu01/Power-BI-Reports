@@ -11,19 +11,19 @@ In the projects' descriptions I include links, codes and tutorials so everyone c
 
 The challenges I took part are organised by Maven Analytics, my favourite analytical learning platform, with a great online community. Here the link to my [Analytical Portfolio](https://mavenshowcase.com/profile/681173b0-8011-704e-bdb5-614cd4fd011e) on their page with my official entries for their challenges.
 
-[Maven Slopes Challenge - Ski Resorts Finder [🏆 Winner]](https://github.com/SteCiu01/Power-BI-Reports/tree/main/Ski-Resorts-Finder)<br>
+[Maven Slopes Challenge - Ski Resorts Finder [🏆 Winner]](https://github.com/SteCiu01/Power-BI-Reports/blob/main/Maven-Slopes-Challenge%5B%F0%9F%8F%86Winner%5D/README.md)<br>
 
-[Maven Coffee Challenge [🏆 Winner]](https://github.com/SteCiu01/Power-BI-Reports/tree/main/Maven-Coffee-Challenge)
+[Maven Coffee Challenge [🏆 Winner]](https://github.com/SteCiu01/Power-BI-Reports/blob/main/Maven-Coffee-Challenge%5B%F0%9F%8F%86Winner%5D/README.md)
 
-[Maven Commuter Challenge [Finalist]](https://github.com/SteCiu01/Power-BI-Reports/blob/main/Maven-Commuter-Challenge/README.md)
+[Maven Commuter Challenge [Finalist]](https://github.com/SteCiu01/Power-BI-Reports/blob/main/Maven-Commuter-Challenge%5BFinalist%5D/README.md)
 
 [Maven Space Challenge - The History of the Space Race [Finalist]](https://github.com/SteCiu01/Power-BI-Reports/blob/main/Maven-Space-Challenge%5BFinalist%5D/README.md)
 
-[Maven LEGO Challenge - LEGO Sets Explorer [Finalist]](https://github.com/SteCiu01/Power-BI-Reports/tree/main/Maven-LEGO-Challenge%5BFinalist%5D)
+[Maven LEGO Challenge - LEGO Sets Explorer [Finalist]](https://github.com/SteCiu01/Power-BI-Reports/blob/main/Maven-LEGO-Challenge%5BFinalist%5D/README.md)
 
 [Maven Sales Challenge - Sales Teams Performance Tracker](https://github.com/SteCiu01/Power-BI-Reports/blob/main/Maven-Sales-Challenge/README.md)
 
-[Maven Healthcare Challenge](https://github.com/SteCiu01/Power-BI-Reports/tree/main/Maven-Healthcare-Challenge)
+[Maven Healthcare Challenge](https://github.com/SteCiu01/Power-BI-Reports/blob/main/Maven-Healthcare-Challenge/README.md)
 
 [Maven Family Leave Challenge](https://github.com/SteCiu01/Power-BI-Reports/blob/main/Maven-Family-Leave-Challenge/README.md)
 
