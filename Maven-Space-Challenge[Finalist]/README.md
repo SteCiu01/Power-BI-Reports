@@ -5,7 +5,7 @@
 
 # Data Challenge - The History of the Space Race [Finalist]
 
-## Full One Pager
+**Full One Pager**
 
 <img width="1635" height="963" alt="image" src="https://github.com/user-attachments/assets/cebb8afa-ded7-4e01-9535-673698af65be" />
 <br><br>
