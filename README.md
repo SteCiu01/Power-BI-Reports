@@ -5,11 +5,11 @@
 
 Collection of my projects, primarily (but not only) from data challenges I participated in. These personal projects motivated me to explore innovative ways to stretch Power BI's capabilities to their limits.
 
-The challenges I took part are organised by Maven Analytics, my favourite analytical learning platform, with a great online community. Here the link to my [Analytical Portfolio](https://mavenshowcase.com/profile/681173b0-8011-704e-bdb5-614cd4fd011e) on their page with my official entries for their challenges.
-
 In the projects' descriptions I include links, codes and tutorials so everyone can ideally try to replicate my development techniques. 
 
 ## Reports from Data Challenges
+
+The challenges I took part are organised by Maven Analytics, my favourite analytical learning platform, with a great online community. Here the link to my [Analytical Portfolio](https://mavenshowcase.com/profile/681173b0-8011-704e-bdb5-614cd4fd011e) on their page with my official entries for their challenges.
 
 [Maven Slopes Challenge - Ski Resorts Finder [🏆 Winner]](https://github.com/SteCiu01/Power-BI-Reports/tree/main/Ski-Resorts-Finder)<br>
 
@@ -26,3 +26,13 @@ In the projects' descriptions I include links, codes and tutorials so everyone c
 [Maven Healthcare Challenge](https://github.com/SteCiu01/Power-BI-Reports/tree/main/Maven-Healthcare-Challenge)
 
 [Maven Family Leave Challenge](https://github.com/SteCiu01/Power-BI-Reports/blob/main/Maven-Family-Leave-Challenge/README.md)
+
+## My Other Personal Projects
+
+During the post-pandemic time there has been a peack of inflation, and rather in that time I started to invest consistently. Therefore, I came up with the idea to create two Power BI reports, one to track the cost of living in different countries and cities over time (to monitor the inflation) and the other one as platform to get better insights on my investments (as I didn't fully like the UI of the Bank App I was using). 
+
+That's how I created:
+
+Global Cost of Living Dashoboard 
+
+My Money Manager Pro tool.
