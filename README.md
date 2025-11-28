@@ -25,14 +25,6 @@ In the projects' descriptions I include links, codes and tutorials so everyone c
 ---------------------------------------
 
 
-
-
-<div align="center">
-
-# 📊 Reports for Data Challenges
-
-<br/>
-
 ## 🏆 Winners
 
 <table>
