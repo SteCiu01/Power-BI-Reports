@@ -208,8 +208,9 @@ SVGImageURL
 
 The codes used are below:
 
+**1 - Won Deals|CQ** 
+
 ```
-Won Deals|CQ 
 IBCS CQ vs PQ Won Opps = 
 
 VAR _ColorAC = "#black"
@@ -277,8 +278,10 @@ RETURN
   </style>" & "
 </svg>"
 ```
+
+**2- △ PQ**
+
 ```
-△ PQ 
 IBCS Delta CQ vs PQ Won Opps = 
 //ΔPY = AC - PY (difference between AC and PY)
 //Returns an SVG image code with ΔPY bars (green - positive, red - negative)
@@ -384,8 +387,10 @@ VAR _SVG =
 RETURN
     _SVG
 ```
+
+**3 - %△ PQ**
+
 ```
-%△ PQ 
 IBCS % Delta CQ vs PQ Won Opps = 
 
 VAR PercDiff = [Opps % Won Delta PQ]
@@ -425,8 +430,10 @@ IF(ISBLANK([Opps Won Delta PQ]), BLANK(),
     </svg>" 
 )
 ```
+
+**4 - Quarterly Trend**
+
 ```
-Quarterly Trend 
 Won Opps Sparkline Point = 
 // Static line color - use %23 instead of # for Firefox compatibility (Measure Derived from Eldersveld Modified by Kolosko)
 VAR LineColour = "black"
