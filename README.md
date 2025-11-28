@@ -24,3 +24,5 @@ In the projects' descriptions I include links, codes and tutorials so everyone c
 [Maven Sales Challenge - Sales Teams Performance Tracker](https://github.com/SteCiu01/Power-BI-Reports/blob/main/Maven-Sales-Challenge/README.md)
 
 [Maven Healthcare Challenge](https://github.com/SteCiu01/Power-BI-Reports/tree/main/Maven-Healthcare-Challenge)
+
+[Maven Family Leave Challenge](https://github.com/SteCiu01/Power-BI-Reports/blob/main/Maven-Family-Leave-Challenge/README.md)
