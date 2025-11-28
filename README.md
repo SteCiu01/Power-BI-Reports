@@ -20,3 +20,5 @@ In the projects' descriptions I include links, codes and tutorials so everyone c
 [The History of the Space Race[Finalist]](https://github.com/SteCiu01/Power-BI-Reports/tree/main/The%20History%20of%20the%20Space%20Race%20%5BFinalist%5D)
 
 [Maven LEGO Challenge - LEGO Sets Explorer [Finalist]](https://github.com/SteCiu01/Power-BI-Reports/tree/main/Maven-LEGO-Challenge%5BFinalist%5D)
+
+[Maven Sales Challenge](https://github.com/SteCiu01/Power-BI-Reports/blob/main/Maven-Sales-Challenge/README.md)
