@@ -21,4 +21,4 @@ In the projects' descriptions I include links, codes and tutorials so everyone c
 
 [Maven LEGO Challenge - LEGO Sets Explorer [Finalist]](https://github.com/SteCiu01/Power-BI-Reports/tree/main/Maven-LEGO-Challenge%5BFinalist%5D)
 
-[Maven Sales Challenge](https://github.com/SteCiu01/Power-BI-Reports/blob/main/Maven-Sales-Challenge/README.md)
+[Maven Sales Challenge - Sales Teams Performance Tracker](https://github.com/SteCiu01/Power-BI-Reports/blob/main/Maven-Sales-Challenge/README.md)
