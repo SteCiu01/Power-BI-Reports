@@ -21,11 +21,15 @@ In the projects' descriptions I include links, codes and tutorials so everyone c
 
 [Maven LEGO Challenge - LEGO Sets Explorer [Finalist]](https://github.com/SteCiu01/Power-BI-Reports/tree/main/Maven-LEGO-Challenge%5BFinalist%5D)
 
+<div align="center">
+
 # 📊 Reports for Data Challenges
+
+</div>
 
 <div align="center">
 
-## 🏆 Winners
+<h2>🏆 Winners</h2>
 
 <table>
 <tr>
@@ -35,8 +39,6 @@ In the projects' descriptions I include links, codes and tutorials so everyone c
 
 [![Ski Resorts Finder](https://github.com/user-attachments/assets/b9806d78-ef09-485d-9f6d-a92a24f34713)](https://github.com/SteCiu01/Power-BI-Reports/tree/main/Ski-Resorts-Finder)
 
-**🏆 Winner**
-
 </td>
 <td width="50%">
 
@@ -44,43 +46,35 @@ In the projects' descriptions I include links, codes and tutorials so everyone c
 
 [![Maven Coffee Challenge](https://github.com/user-attachments/assets/92c723cb-d985-41f9-a107-ac3248f6ef33)](https://github.com/SteCiu01/Power-BI-Reports/tree/main/Maven-Coffee-Challenge)
 
-**🏆 Winner**
-
 </td>
 </tr>
 </table>
 
 ---
 
-## 🎯 Finalists
+<h2>🎯 Finalists</h2>
 
 <table>
 <tr>
-<td width="33%">
+<td width="33%" valign="top">
 
 ### [Maven Commuter Challenge](https://github.com/SteCiu01/Power-BI-Reports/blob/main/Maven-Commuter-Challenge/README.md)
 
 [![Maven Commuter Challenge](https://github.com/user-attachments/assets/058336ae-a826-467f-846a-c93f84661d7e)](https://github.com/SteCiu01/Power-BI-Reports/blob/main/Maven-Commuter-Challenge/README.md)
 
-**Finalist**
-
 </td>
-<td width="33%">
+<td width="33%" valign="top">
 
 ### [The History of the Space Race](https://github.com/SteCiu01/Power-BI-Reports/tree/main/The%20History%20of%20the%20Space%20Race%20%5BFinalist%5D)
 
 [![The History of the Space Race](https://github.com/user-attachments/assets/cebb8afa-ded7-4e01-9535-673698af65be)](https://github.com/SteCiu01/Power-BI-Reports/tree/main/The%20History%20of%20the%20Space%20Race%20%5BFinalist%5D)
 
-**Finalist**
-
 </td>
-<td width="33%">
+<td width="33%" valign="top">
 
 ### [Maven LEGO Challenge - LEGO Sets Explorer](https://github.com/SteCiu01/Power-BI-Reports/tree/main/Maven-LEGO-Challenge%5BFinalist%5D)
 
 [![Maven LEGO Challenge](https://github.com/user-attachments/assets/16c668c2-07f9-4cd9-853c-fff7f6758d2e)](https://github.com/SteCiu01/Power-BI-Reports/tree/main/Maven-LEGO-Challenge%5BFinalist%5D)
-
-**Finalist**
 
 </td>
 </tr>
