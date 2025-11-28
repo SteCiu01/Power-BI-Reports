@@ -1,4 +1,4 @@
-# The Challenge
+<img width="2911" height="3429" alt="image" src="https://github.com/user-attachments/assets/98c600f2-bc6d-4597-a31d-4ae276d7f5f9" /># The Challenge
 
 "... The intent of the HCAHPS initiative is to provide a standardized survey instrument for measuring patients’ perspectives on hospital care, and one of its 3 main goals is to "create incentives for hospitals to improve their quality of care".
 
@@ -8,6 +8,14 @@ Your task is to **evaluate whether the HCAHPS survey has been successful in acc
 - Are there any specific areas where hospitals have made more progress than others?
 - Are there any major areas of opportunity remaining?
 - What recommendations can you make to hospitals to help them further improve the patient experience?**"**
+
+[Full Challenge Link](https://mavenanalytics.io/challenges/maven-healthcare-challenge)
+
+# Maven Healthcare Challenge - HCAHPS Survey Evaluation Report (2015 - 2023)
+
+<img width="2911" height="3429" alt="image" src="https://github.com/user-attachments/assets/8890de82-4de2-45f7-aeb8-875641faa97e" />
+
+Examination of the HCAHPS survey spanning 2015 to 2023, with the intent of furnishing guidelines to enhance the holistic patient experience within USA's healthcare institutions.
 
 # Approach Employed
 
