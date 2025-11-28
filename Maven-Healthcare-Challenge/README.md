@@ -13,6 +13,8 @@ Your task is to **evaluate whether the HCAHPS survey has been successful in acc
 
 # Maven Healthcare Challenge - HCAHPS Survey Evaluation Report (2015 - 2023)
 
+**Full One Page Report**
+
 <img width="2911" height="3429" alt="image" src="https://github.com/user-attachments/assets/8890de82-4de2-45f7-aeb8-875641faa97e" />
 
 Examination of the HCAHPS survey spanning 2015 to 2023, with the intent of furnishing guidelines to enhance the holistic patient experience within USA's healthcare institutions.
