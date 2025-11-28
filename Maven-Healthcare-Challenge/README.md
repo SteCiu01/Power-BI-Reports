@@ -1,4 +1,4 @@
-<img width="2911" height="3429" alt="image" src="https://github.com/user-attachments/assets/98c600f2-bc6d-4597-a31d-4ae276d7f5f9" /># The Challenge
+# The Challenge
 
 "... The intent of the HCAHPS initiative is to provide a standardized survey instrument for measuring patients’ perspectives on hospital care, and one of its 3 main goals is to "create incentives for hospitals to improve their quality of care".
 
