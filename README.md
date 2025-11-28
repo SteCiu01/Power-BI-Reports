@@ -11,7 +11,7 @@ In the projects' descriptions I include links, codes and tutorials so everyone c
 
 ## Reports for Data Challenges
 
-[Maven Slopes Challenge [🏆 Winner] - Ski Resorts Finder](https://github.com/SteCiu01/Power-BI-Reports/tree/main/Ski-Resorts-Finder)
+[Maven Slopes Challenge - Ski Resorts Finder [🏆 Winner]](https://github.com/SteCiu01/Power-BI-Reports/tree/main/Ski-Resorts-Finder)
 
 [Maven Coffee Challenge [🏆 Winner]](https://github.com/SteCiu01/Power-BI-Reports/tree/main/Maven-Coffee-Challenge)
 
@@ -19,4 +19,4 @@ In the projects' descriptions I include links, codes and tutorials so everyone c
 
 [The History of the Space Race[Finalist]](https://github.com/SteCiu01/Power-BI-Reports/tree/main/The%20History%20of%20the%20Space%20Race%20%5BFinalist%5D)
 
-[Maven LEGO Challenge [Finalist] - LEGO Sets Explorer](https://github.com/SteCiu01/Power-BI-Reports/tree/main/Maven-LEGO-Challenge%5BFinalist%5D)
+[Maven LEGO Challenge - LEGO Sets Explorer [Finalist]](https://github.com/SteCiu01/Power-BI-Reports/tree/main/Maven-LEGO-Challenge%5BFinalist%5D)
