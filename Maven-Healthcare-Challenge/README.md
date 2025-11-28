@@ -23,7 +23,7 @@ Subsequently, the analysis proceeded with a nationwide assessment to ascertain i
 
 The subsequent phase of the study was dedicated to discerning if this trend was uniformly manifested across all 51 states within the United States. The objective was to determine whether specific states had effectively executed policies aimed at ameliorating the patient experience between 2015 and 2023.
 
-<img width="1487" height="1569" alt="image" src="https://github.com/user-attachments/assets/a9b5d6dc-610d-449a-b9ef-62ea67eff6a5" />
+<img width="1066" height="1125" alt="image" src="https://github.com/user-attachments/assets/87088634-ed03-47f8-bbc6-1a6f44d0d462" />
 
 The matrix analysis, elucidates the percentage variation of Top-Box responses, from 2015 percentages to 2023 percentages, for each measure across states. The matrix underscored discernible instances wherein certain states achieved enhancements in the Overall Hospital Rating and select Hospital Attributes, while others exhibited stagnation or deterioration.
 
@@ -37,7 +37,7 @@ In the light of that is safe to assume that when hospitals obtain improvements i
 
 Following this validation, the study transitioned into a pivotal phase involving the construction of a robust model. This model aimed to elucidate the feature-related attributes exerting the most profound influence on the Overall Hospital Rating. To this end, a multiple linear regression framework was employed. The Overall Hospital Rating variation was designated as the dependent variable, with all other measures' variations considered as independent variables—excluding the Recommendation Score's variation. Exclusion of the Recommendation Score's variation was warranted due to its intrinsic linkage with the Overall Hospital Rating's variation and its potential to introduce bias into the model.
 
-<img width="1284" height="696" alt="image" src="https://github.com/user-attachments/assets/a3475f16-ee0e-453d-b58d-08c47a481ff8" />
+<img width="2000" height="1084" alt="image" src="https://github.com/user-attachments/assets/b2ebe004-a112-4b06-b302-3900b14f3f32" />
 
 The ensuing regression model yielded unequivocal outcomes. It elucidated a substantial portion of the observed variability, with R-squared (R2) and Adjusted R-squared values of 0.81 and 0.77 respectively. The model's robustness was underscored by a p-value nearing 0.00.
 
