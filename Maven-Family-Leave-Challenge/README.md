@@ -62,8 +62,20 @@ Some entries did not have the sub-industry (e.g. Aerospace) and in this case the
 
 **In order to achieve points 1 and 2 in one step, this formula has been used:**
 
-**=IFERROR(TRIM(LEFT(H2, FIND(":",H2)-1)),H2)**![undefined](https://maven-uploads.s3.amazonaws.com/65253099/projects/Data%20Cleanup%201.png)3 - Removed one of the 2 duplicate entries: "Collins Aerospace" company![undefined](https://maven-uploads.s3.amazonaws.com/65253099/projects/Data%20Cleanup%202.png)**Methodology of removal:** as stated in the data dictionary, this is user-reported data, where users report conflicting information, consensus numbers (if any) or the median are shown. In this specific case, the median of 2 numbers is the number that is halfway (their average).
+**=IFERROR(TRIM(LEFT(H2, FIND(":",H2)-1)),H2)**
 
-Therefore this is what has been left in the dataset for the Collins Aerospace company:![undefined](https://maven-uploads.s3.amazonaws.com/65253099/projects/Data%20Cleanup%203.png)4 - To avoid problems and to better handle the analysis it has been substituted the "N/A" with "blank" in the 4 columns (Paid Maternity Leave, Unpaid Maternity Leave, Paid Paternity Leave and Unpaid Paternity Leave) that provide the number of weeks of paid/unpaid leave granted by each company in the dataset.
+<img width="1451" height="406" alt="image" src="https://github.com/user-attachments/assets/1541813b-f569-4568-8cb9-27f79b5d5e16" />
+
+3 - Removed one of the 2 duplicate entries: "Collins Aerospace" company
+
+<img width="4036" height="406" alt="image" src="https://github.com/user-attachments/assets/3e590490-ed5f-4f32-8a6f-c565dec97bf5" />
+
+**Methodology of removal:** as stated in the data dictionary, this is user-reported data, where users report conflicting information, consensus numbers (if any) or the median are shown. In this specific case, the median of 2 numbers is the number that is halfway (their average).
+
+Therefore this is what has been left in the dataset for the Collins Aerospace company:
+
+<img width="1722" height="92" alt="image" src="https://github.com/user-attachments/assets/116580de-0d72-4899-b207-cb74b48c5c9e" />
+
+4 - To avoid problems and to better handle the analysis it has been substituted the "N/A" with "blank" in the 4 columns (Paid Maternity Leave, Unpaid Maternity Leave, Paid Paternity Leave and Unpaid Paternity Leave) that provide the number of weeks of paid/unpaid leave granted by each company in the dataset.
 
 This way, in each column only values for those companies where information has been reported remains. 
