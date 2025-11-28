@@ -2,6 +2,17 @@
 
 "...your task is to **create an impactful visual** for an article on parental leave policies across the business world"
 
+[Full Challenge Link](https://mavenanalytics.io/challenges/maven-family-leave-challenge)
+
+# Maven Family Leave Challenge
+
+<img width="1068" height="599" alt="image" src="https://github.com/user-attachments/assets/c12be498-703f-42ee-9e36-fa57d93cfa4e" />
+<br><br>
+
+Parental Leave Policies across the USA's Business World: impactful visual and related article for the Women's History Month in the United States
+
+[📊 Live Report](https://app.powerbi.com/view?r=eyJrIjoiNTI5Mzc2ODctZjA2ZC00NGFmLWJiZTctZjRjNGE0MmFlYzVjIiwidCI6IjhhNDk1ZGQwLThkNDEtNDcyYy1iMTljLTFhMzQzZjYxYmFhMSIsImMiOjl9)
+
 # The idea
 
 For this project I went a bit beyond the task. I decided to team-work with [Aleksandra Zaczek](https://www.linkedin.com/in/aleksandra-%C5%BCaczek-1875b4108/), an aspiring UX/UI designer, and create a porotype of an article on the Parental Leave Policies in the USA on a hypothetical news website. 
