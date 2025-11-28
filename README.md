@@ -11,8 +11,8 @@ In the projects' descriptions I include links, codes and tutorials so everyone c
 
 ## Reports for Data Challenges
 
-[Maven Slopes Challenge - Ski Resorts Finder [🏆 Winner]](https://github.com/SteCiu01/Power-BI-Reports/tree/main/Ski-Resorts-Finder)
-<img src="https://github.com/user-attachments/assets/b9806d78-ef09-485d-9f6d-a92a24f34713" alt="Maven Slopes Challenge - Ski Resorts Finder" width="95%"/>
+[Maven Slopes Challenge - Ski Resorts Finder [🏆 Winner]](https://github.com/SteCiu01/Power-BI-Reports/tree/main/Ski-Resorts-Finder)<br>
+<img src="https://github.com/user-attachments/assets/b9806d78-ef09-485d-9f6d-a92a24f34713" alt="Maven Slopes Challenge - Ski Resorts Finder" width="30%"/>
 
 [Maven Coffee Challenge [🏆 Winner]](https://github.com/SteCiu01/Power-BI-Reports/tree/main/Maven-Coffee-Challenge)
 
