@@ -133,23 +133,362 @@ These codes are a combination of the original codes shared by the individuals me
 
 Starting from the **KPI Card**, this is the final outcome:
 
-![undefined](https://mavenanalyticsio-upload-bucket-prod.s3.us-west-2.amazonaws.com/65253099/projects/ff0d9c1f-1ab6-405a-9973-e0ea5e4cbe69.png)In this KPI card the trendline and the "Vs. PQ: -61 / (-4.9%)" part was done with the following code:
+![undefined](https://mavenanalyticsio-upload-bucket-prod.s3.us-west-2.amazonaws.com/65253099/projects/ff0d9c1f-1ab6-405a-9973-e0ea5e4cbe69.png)
+
+In this KPI card the trendline and the "Vs. PQ: -61 / (-4.9%)" part was done with the following code:
 
 ```
-Won Opps Sparkline Point Card = 
+Won Rev Sparkline Points Card =
+// Measure Derived from Eldersveld Modified by Kolosko and adapted here by Stefano Ciurlia
+VAR LineColour = "black"
+// Color logic for the last quarter
+VAR PercDiff = [Rev % Delta]
+VAR Color = IF(PercDiff < 0, "#ff0000", if(PercDiff > 0,"#008e96", "grey"))
+VAR PointColour = "white"
 
-// Static line color - use %23 instead of # for Firefox compatibility (Measure Derived from Eldersveld Modified by Kolosko)VAR LineColour = "black"// Color logic for the last quarterVAR PercDiff = [Opps % Won Delta PQ]VAR Color = IF(PercDiff &lt; 0, "#ff0000", if(PercDiff &gt; 0,"#008e96", "grey"))VAR PointColour = "white"
+// SVG dimensions
+VAR SVGWidth = 150 // Change this value to adjust the width
+VAR SVGHeight = 30 // Change this value to adjust the height
 
-// SVG dimensionsVAR SVGWidth = 150 // Change this value to adjust the widthVAR SVGHeight = 30 // Change this value to adjust the height
+// "Quarter" field used in this example along the X axis
+VAR XMinDate = MIN('Close Dates Table'[Quarter])
+VAR XMaxDate = MAX('Close Dates Table'[Quarter])
 
-// "Quarter" field used in this example along the X axisVAR XMinDate = MIN('Close Dates Table'[Quarter])VAR XMaxDate = MAX('Close Dates Table'[Quarter])
+// Obtain overall min and overall max measure values when evaluated for each quarter
+VAR YMinValue = MINX(Values('Close Dates Table'[Quarter]),CALCULATE([Won Revenues]))
+VAR YMaxValue = MAXX(Values('Close Dates Table'[Quarter]),CALCULATE([Won Revenues]))
 
-// Obtain overall min and overall max measure values when evaluated for each quarterVAR YMinValue = MINX(Values('Close Dates Table'[Quarter]),CALCULATE([Won Opportunities]))VAR YMaxValue = MAXX(Values('Close Dates Table'[Quarter]),CALCULATE([Won Opportunities]))
+// Build table of X & Y coordinates and fit to SVGWidth x SVGHeight viewbox
+VAR SparklineTable = ADDCOLUMNS(
+    SUMMARIZE('Close Dates Table','Close Dates Table'[Quarter]),
+        "X",INT(SVGWidth * DIVIDE('Close Dates Table'[Quarter] - XMinDate, XMaxDate - XMinDate)),
+        "Y",INT(SVGHeight * DIVIDE([Won Revenues] - YMinValue,YMaxValue - YMinValue)-25))
 
-// Build table of X &amp; Y coordinates and fit to SVGWidth x SVGHeight viewboxVAR SparklineTable = ADDCOLUMNS(&nbsp; &nbsp; SUMMARIZE('Close Dates Table','Close Dates Table'[Quarter]),&nbsp; &nbsp; &nbsp; &nbsp; "X",INT(SVGWidth * DIVIDE('Close Dates Table'[Quarter] - XMinDate, XMaxDate - XMinDate)),&nbsp; &nbsp; &nbsp; &nbsp; "Y",INT(SVGHeight * DIVIDE([Won Opportunities] - YMinValue,YMaxValue - YMinValue)-25))
+VAR SparklineTableSeller = ADDCOLUMNS(
+    SUMMARIZE('sales_teams',sales_teams[sales_agent]),
+        "Y",INT(SVGHeight * DIVIDE([Won Revenues] - YMinValue,YMaxValue - YMinValue)))
 
-VAR SparklineTableSeller = ADDCOLUMNS(&nbsp; &nbsp; SUMMARIZE('sales_teams',sales_teams[sales_agent]),&nbsp; &nbsp; &nbsp; &nbsp; "Y",INT(SVGHeight * DIVIDE([Won Opportunities] - YMinValue,YMaxValue - YMinValue)))
+VAR SparklineTableManager = ADDCOLUMNS(
+    SUMMARIZE('sales_teams',sales_teams[manager]),
+        "Y",INT(SVGHeight * DIVIDE([Won Revenues] - YMinValue,YMaxValue - YMinValue)))
 
-VAR SparklineTableManager = ADDCOLUMNS(&nbsp; &nbsp; SUMMARIZE('sales_teams',sales_teams[manager]),&nbsp; &nbsp; &nbsp; &nbsp; "Y",INT(SVGHeight * DIVIDE([Won Opportunities] - YMinValue,YMaxValue - YMinValue)))
+// Concatenate X & Y coordinates to build the sparkline
+VAR Lines = CONCATENATEX(SparklineTable,[X] & "," & SVGHeight-[Y]," ", 'Close Dates Table'[Quarter])
+VAR PointTable=
+    ADDCOLUMNS(
+        SUMMARIZE('Close Dates Table','Close Dates Table'[Quarter]),
+            "@Colour",IF([Won Revenues]=YMaxValue,"Green",IF([Won Revenues]=YMinValue,"Red",LineColour)),
+        "@Points", "<circle cx='"&INT(SVGWidth * DIVIDE('Close Dates Table'[Quarter] - XMinDate, XMaxDate - XMinDate))&"' cy='" & SVGHeight -  INT(SVGHeight * DIVIDE([Won Revenues] - YMinValue,YMaxValue - YMinValue))+25 & "' r='3' stroke='"&LineColour&"' stroke-width='1'  fill='"&LineColour&"'/>")
 
-// Concatenate X &amp; Y coordinates to build the sparklineVAR Lines = CONCATENATEX(SparklineTable,[X] &amp; "," &amp; SVGHeight-[Y]," ", 'Close Dates Table'[Quarter])VAR PointTable=&nbsp; &nbsp; ADDCOLUMNS(&nbsp; &nbsp; &nbsp; &nbsp; SUMMARIZE('Close Dates Table','Close Dates Table'[Quarter]),&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "@Colour",IF([Won Revenues]=YMaxValue,"Green",IF([Won Opportunities]=YMinValue,"Red",LineColour)),&nbsp; &nbsp; &nbsp; &nbsp; "@Points", "
+// Last data points on the line
+VAR LastSparkYValue = MAXX( FILTER(SparklineTable, 'Close Dates Table'[Quarter] = XMaxDate), [Y])
+VAR LastSparkXValue = MAXX( FILTER(SparklineTable, 'Close Dates Table'[Quarter] = XMaxDate), [X])
+
+VAR _YValue = 8
+
+// Add to SVG, and verify Data Category is set to Image URL for this measure
+VAR SVGImageURL =
+    "data:image/svg+xml;utf8," &
+    "<svg xmlns='http://www.w3.org/2000/svg' x='0px' y='0px' viewBox='-7 -7 " & SVGWidth+14 & " " & SVGHeight+45 & "'>
+    " &
+    "<text x='1' y='" & _YValue & "'  fill='black' font-family='Tahoma' font-size='11'> Vs. PQ: <tspan fill='" & Color & "'>" & FORMAT([Rev Delta], IF(PercDiff <= 0, "$#,###", "+$#,###")) &"</tspan> / (<tspan fill='" & Color & "'>" & FORMAT([Rev % Delta], IF(PercDiff <= 0, "0.0%", "+0.0%")) &"</tspan>)"& "</text>" &
+    "<polyline
+        fill='transparent' stroke='" & LineColour & "'
+        stroke-linecap='round' stroke-linejoin='round'
+        stroke-width='2' points=' " & Lines &
+      " '/>" &
+        CONCATENATEX(PointTable,[@Points]) &
+        "<circle cx='"& LastSparkXValue & "' cy='" & SVGHeight - LastSparkYValue & "' r='4' stroke='" & Color & "' stroke-width='3' fill='" & PointColour & "' />" &
+        "</svg>"
+       
+RETURN
+SVGImageURL
+```
+<img width="940" height="498" alt="image" src="https://github.com/user-attachments/assets/edaa42c2-3ba4-4feb-b6b5-965073c2a834" />
+
+The codes used are below:
+
+```
+Won Deals|CQ 
+IBCS CQ vs PQ Won Opps = 
+
+VAR _ColorAC = "#black"
+VAR _ColorPY = "white"
+
+VAR _FontWeight =
+    IF ( HASONEVALUE ( 'sales_teams'[sales_agent] ), "normal", "bold" )
+
+VAR _ValueAvg = [Last Q Average Won Opps]
+
+// For Sales Agents
+VAR PY = [Previous Q Won Opps]
+VAR Actual = [Last Q Won Opps]
+
+VAR _maxValue =
+    --max value (AC and PY)
+    IF ( HASONEVALUE ( sales_teams[sales_agent] ),
+    MAX (
+        MAXX ( ALLSELECTED ( 'sales_teams'  ), [Last Q Won Opps] ),
+        MAXX ( ALLSELECTED ( 'sales_teams'  ), [Previous Q Won Opps] )
+    ) / 0.6,
+    IF ( HASONEVALUE ( sales_teams[manager] ),
+    MAX (
+        MAXX ( ALLSELECTED ( 'sales_teams'[manager] ), [Last Q Won Opps] ),
+        MAXX ( ALLSELECTED ( 'sales_teams'[manager] ), [Previous Q Won Opps] )
+    ) / 0.8,
+    MAX (
+         [Last Q Won Opps],
+        [Previous Q Won Opps]
+    ) / 0.8)
+    )
+VAR _WidthAvg =
+    --width (up to 100%)
+    FORMAT ( DIVIDE ( _ValueAvg, _maxValue ), "0%" )
+VAR _WidthAC =
+    --width (up to 100%)
+    FORMAT ( DIVIDE ( Actual, _maxValue ), "0%" )
+VAR _WidthPY =
+    --width (up to 100%)
+    FORMAT ( DIVIDE ( PY, _maxValue ), "0%" )
+
+VAR _Rank =
+    --row value rank to ensure correct column sorting (by AC value)
+    100000
+        + RANKX ( ALLSELECTED ( 'sales_teams'[manager]), [Last Q Won Opps],, ASC )
+VAR _Rank2 =
+    --row value rank to ensure correct column sorting (by AC value)
+    100000
+        + RANKX ( ALLSELECTED ( 'sales_teams'[sales_agent]), [Last Q Won Opps],, ASC )
+RETURN 
+    "data:image/svg+xml;utf8," & "<svg xmlns=""http://www.w3.org/2000/svg"" width=""" & 250& """ height=""" & 45 & """>
+    /*" & _Rank & _Rank2 &"*/
+    " & /*"<line  x1=""" & _WidthAvg & """ x2=""" & _WidthAvg & """ y1=""0%"" y2=""100%"" stroke=""" & _ColorAC & """ stroke-width=""1""></line >" & */ "
+    <rect y=""9%"" x=""0"" width=""" & _WidthPY & """ height=""67%"" fill=""" & _ColorPY & """ stroke=""#333333"" stroke-width=""1""></rect>
+    <rect y=""27%"" x=""0"" width=""" & _WidthAC & """ height=""67%"" fill=""" & _ColorAC & """></rect>   
+    <text x=""" & _WidthAC & """ dx=""5"" y=""65%"" font-weight=""" & _FontWeight & """>" & FORMAT(Actual,"#,###") & "</text>
+" & "<style>
+    <![CDATA[
+      text{
+        font-family: Thaoma;
+        font-size: 24px;
+        alignment-baseline: middle;
+      }
+    ]]>
+  </style>" & "
+</svg>"
+```
+```
+△ PQ 
+IBCS Delta CQ vs PQ Won Opps = 
+//ΔPY = AC - PY (difference between AC and PY)
+//Returns an SVG image code with ΔPY bars (green - positive, red - negative)
+//  and a vertical line for Axis Y (ΔPY = 0)
+VAR _ColorGrey = "#c6c6c6"
+VAR _ColorRed = "#ff0000"
+VAR _ColorGreen = "#008e96"
+
+VAR _FontWeight =
+    --'normal' font for sales persons, 'bold' font for total row (average)
+    IF (
+        HASONEVALUE ( 'sales_teams'[sales_agent] ),
+        "normal",
+        "bold"
+    )
+
+VAR _Value = [Opps Won Delta PQ]
+
+VAR _maxValue =
+    
+    IF ( HASONEVALUE ( sales_teams[sales_agent] ),
+    MAX (
+        MAXX ( ALL( 'sales_teams'  ), [Opps Won Delta PQ] ),
+        MAXX ( ALL( 'sales_teams'  ), [Opps Won Delta PQ] )
+    ) /0.3 ,
+    IF ( HASONEVALUE ( sales_teams[manager] ),
+    MAX (
+        MAXX ( ALL( 'sales_teams'  ), [Opps Won Delta PQ]),
+        MAXX ( ALL( 'sales_teams'  ), [Opps Won Delta PQ] )
+    )  /0.2,
+    MAX (
+        MAXX ( ALL( 'sales_teams'), [Opps Won Delta PQ]),
+        MAXX ( ALL( 'sales_teams' ), [Opps Won Delta PQ] )
+    )  /0.2
+    ))
+
+VAR _WidthValue =
+    --bar width (numeric value)
+    ( DIVIDE ( ABS ( _Value ), _maxValue ) / 2 ) * 0.5
+VAR _Width =
+    --bar width - text for SVG
+    FORMAT ( _WidthValue, "0.0%" )
+VAR _barColor =
+    --green or red
+    IF ( _Value > 0, _ColorGreen, _ColorRed )
+VAR _X =
+    --x position of a bar
+    SWITCH (
+        TRUE (),
+        _Value >= 0, "50%",
+        _Value < 0, FORMAT ( 0.5 - _WidthValue, "0%" )
+    )
+VAR _XText =
+    --x position of a label
+    SWITCH (
+        TRUE (),
+        _Value >= 0, FORMAT ( 0.5 + _WidthValue, "0%" ),
+        _Value < 0, _X
+    )
+VAR _Anchor =
+    --text anchor
+    SWITCH ( TRUE (), _Value >= 0, "start", _Value < 0, "end" )
+VAR _DX =
+    --text offset along axis X
+    SWITCH ( TRUE (), _Value >= 0, 5, _Value < 0, -5 )
+VAR _Rank =
+    --row value rank to ensure correct column sorting (by AC value)
+    100000
+        + RANKX ( ALLSELECTED ( 'sales_teams'[manager]), [Opps Won Delta PQ],, ASC )
+VAR _Rank2 =
+    --row value rank to ensure correct column sorting (by AC value)
+    100000
+        + RANKX ( ALLSELECTED ( 'sales_teams'[sales_agent]), [Opps Won Delta PQ],, ASC )
+
+VAR _SVG =
+    --SVG code
+    --header
+    --comment with Rank text for sorting
+    --line (axis Y)
+    --rectangle for DeltaPY (green or red)
+    --text data label for DeltaPY
+    --SVG style
+
+    IF(
+    ISBLANK([Opps Won Delta PQ]) = true, BLANK(),
+    "data:image/svg+xml;utf8," & "<svg xmlns=""http://www.w3.org/2000/svg"" width=""" & 150& """ height=""" & 30 & """>
+    /*" & _Rank &_Rank2 & "*/ 
+    <line  x1=""50%"" x2=""50%"" y1=""0%"" y2=""100%"" stroke=""" & _ColorGrey & """ stroke-width=""1""></line >
+    <rect y=""17%"" x=""" & _X & """ width=""" & _Width & """ height=""67%"" fill=""" & _barColor & """></rect>    
+    <text text-anchor=""" & _Anchor & """ x=""" & _XText & """ dx=""" & _DX & """ y=""55%"" font-weight=""" & _FontWeight & """>"
+        & FORMAT ( _Value, "+#,0;-#,0;#,0" ) & "</text>    
+" & "<style>
+    <![CDATA[
+      text{
+        font-family: Thaoma;
+        font-size: 13px;
+        alignment-baseline: middle;
+      }
+    ]]>
+  </style>" & "
+</svg>"
+    )
+RETURN
+    _SVG
+```
+```
+%△ PQ 
+IBCS % Delta CQ vs PQ Won Opps = 
+
+VAR PercDiff = [Opps % Won Delta PQ]
+
+VAR Width = PercDiff * 85 // Adjust scale factor as needed
+
+VAR Color = IF(PercDiff < 0, "#ff0000", if(PercDiff > 0,"#008e96", "grey"))
+VAR _FontWeight =
+    --'normal' font for sales persons, 'bold' font for total row (average)
+    IF (
+        HASONEVALUE ( 'sales_teams'[sales_agent] ),
+        "normal",
+        "bold"
+    )
+
+VAR Direction = IF(PercDiff < 0,  50 + Width, 50 + Width)
+VAR TextPosition = IF(PercDiff < 0, Direction -38, Direction + 7)
+
+VAR _Rank =
+    --row value rank to ensure correct column sorting (by AC value)
+    100000
+        + RANKX ( ALLSELECTED ( 'sales_teams'[manager]), [Opps % Won Delta PQ],, ASC )
+VAR _Rank2 =
+    --row value rank to ensure correct column sorting (by AC value)
+    100000
+        + RANKX ( ALLSELECTED ( 'sales_teams'[sales_agent]), [Opps % Won Delta PQ],, ASC )
+
+RETURN
+IF(ISBLANK([Opps Won Delta PQ]), BLANK(), 
+"data:image/svg+xml;utf8," & "
+    <svg width='260' height='32' viewBox='-2 -2 102 22' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' overflow='visible'>
+    /*" & _Rank &_Rank2 & "*/ 
+    <line  x1='50' x2='50%' y1='0' y2='100' stroke=""" & "grey" & """ stroke-width=""1""></line >
+        <line x1='50' y1='10' x2='"&Direction&"' y2='10' stroke='"&Color&"' stroke-width='2'/>
+        <circle cx='"&Direction&"' cy='10' r='5' fill='"&Color&"'/>
+        <text x='"&TextPosition&"' y='15' font-weight='"&_FontWeight&"' font-family='Thaoma, sans-serif' font-size='14px'>"&FORMAT(PercDiff, "0%")&"</text>
+    </svg>" 
+)
+```
+```
+Quarterly Trend 
+Won Opps Sparkline Point = 
+// Static line color - use %23 instead of # for Firefox compatibility (Measure Derived from Eldersveld Modified by Kolosko)
+VAR LineColour = "black"
+// Color logic for the last quarter
+VAR PercDiff = [Opps % Won Delta PQ]
+VAR Color = IF(PercDiff < 0, "#ff0000", if(PercDiff > 0,"#008e96", "grey"))
+VAR PointColour = "white"
+
+// SVG dimensions
+VAR SVGWidth = 150 // Change this value to adjust the width
+VAR SVGHeight = 30 // Change this value to adjust the height
+
+// "Quarter" field used in this example along the X axis
+VAR XMinDate = MIN('Close Dates Table'[Quarter])
+VAR XMaxDate = MAX('Close Dates Table'[Quarter])
+
+// Obtain overall min and overall max measure values when evaluated for each quarter
+VAR YMinValue = MINX(Values('Close Dates Table'[Quarter]),CALCULATE([Won Opportunities]))
+VAR YMaxValue = MAXX(Values('Close Dates Table'[Quarter]),CALCULATE([Won Opportunities]))
+
+// Build table of X & Y coordinates and fit to SVGWidth x SVGHeight viewbox
+VAR SparklineTable = ADDCOLUMNS(
+    SUMMARIZE('Close Dates Table','Close Dates Table'[Quarter]),
+        "X",INT(SVGWidth * DIVIDE('Close Dates Table'[Quarter] - XMinDate, XMaxDate - XMinDate)),
+        "Y",INT(SVGHeight * DIVIDE([Won Opportunities] - YMinValue,YMaxValue - YMinValue)))
+
+// Concatenate X & Y coordinates to build the sparkline
+VAR Lines = CONCATENATEX(SparklineTable,[X] & "," & SVGHeight-[Y]," ", 'Close Dates Table'[Quarter])
+VAR PointTable=
+    ADDCOLUMNS(
+        SUMMARIZE('Close Dates Table','Close Dates Table'[Quarter]),
+            "@Colour",IF([Won Opportunities]=YMaxValue,"Green",IF([Won Opportunities]=YMinValue,"Red",LineColour)),
+        "@Points", "<circle cx='"&INT(SVGWidth * DIVIDE('Close Dates Table'[Quarter] - XMinDate, XMaxDate - XMinDate))&"' cy='" & SVGHeight -  INT(SVGHeight * DIVIDE([Won Opportunities] - YMinValue,YMaxValue - YMinValue)) & "' r='3' stroke='"&LineColour&"' stroke-width='1'  fill='"&LineColour&"'/>")
+
+// Last data points on the line
+VAR LastSparkYValue = MAXX( FILTER(SparklineTable, 'Close Dates Table'[Quarter] = XMaxDate), [Y])
+VAR LastSparkXValue = MAXX( FILTER(SparklineTable, 'Close Dates Table'[Quarter] = XMaxDate), [X])
+
+VAR _Rank =
+    --row value rank to ensure correct column sorting (by AC value)
+    100000
+        + RANKX ( ALLSELECTED ( 'sales_teams'[manager]), [Last Q Won Opps],, ASC )
+VAR _Rank2 =
+    --row value rank to ensure correct column sorting (by AC value)
+    100000
+        + RANKX ( ALLSELECTED ( 'sales_teams'[sales_agent]), [Last Q Won Opps],, ASC )
+// Add to SVG, and verify Data Category is set to Image URL for this measure
+VAR SVGImageURL = 
+    "data:image/svg+xml;utf8," & 
+    "<svg xmlns='http://www.w3.org/2000/svg' x='0px' y='0px' viewBox='-7 -7 " & SVGWidth+14 & " " & SVGHeight+14 & "'>
+    /*" & _Rank &_Rank2 & "*/ " &
+    "<polyline 
+        fill='transparent' stroke='" & LineColour & "' 
+        stroke-linecap='round' stroke-linejoin='round' 
+        stroke-width='2' points=' " & Lines & 
+      " '/>" &
+        CONCATENATEX(PointTable,[@Points]) &
+        "<circle cx='"& LastSparkXValue & "' cy='" & SVGHeight - LastSparkYValue & "' r='4' stroke='" & Color & "' stroke-width='3' fill='" & PointColour & "' />" &
+      IF(ISBLANK([Rev % Delta]), BLANK(),   "</svg>"
+  )      
+RETURN 
+IF(ISBLANK([Opps Won Delta PQ]), BLANK(), 
+SVGImageURL
+)
+```
