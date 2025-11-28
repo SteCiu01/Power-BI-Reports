@@ -21,7 +21,7 @@ In the projects' descriptions I include links, codes and tutorials so everyone c
 
 [Maven LEGO Challenge - LEGO Sets Explorer [Finalist]](https://github.com/SteCiu01/Power-BI-Reports/tree/main/Maven-LEGO-Challenge%5BFinalist%5D)
 
-<div align="center">
+<div align="Left">
 
 # 📊 Reports for Data Challenges
 
