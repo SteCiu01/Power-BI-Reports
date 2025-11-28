@@ -1,6 +1,7 @@
 # Money Manager Pro
 
 <img width="1147" height="481" alt="image" src="https://github.com/user-attachments/assets/4a1ab692-5488-4fab-aa5b-baf5af23c0aa" />
+<br><br>
 
 Combine your investments and savings accounts and keep track of your overall wealth.
 
