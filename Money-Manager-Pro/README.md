@@ -12,7 +12,7 @@ Power BI tool to track investments performace -> [📊 Live Demo](https://app.po
 
 **Solution:** To address these challenges, I developed a Power Bi tool called "Money Manager Pro." This tool provides a visually explanatory representation of the performance of my investment portfolio in Euro. Furthermore, it allows me to combine the investment and savings accounts, which are denominated in different currencies, to provide a comprehensive overview of my total wealth in Euro.
 
-### Please note: The figures presented in this dashboard are arbitrary and are provided solely as examples. They do not represent the actual value of my investments or the real investments I have made. The purpose of showcasing this tool is purely demonstrative.
+***Please note: The figures presented in this dashboard are arbitrary and are provided solely as examples. They do not represent the actual value of my investments or the real investments I have made. The purpose of showcasing this tool is purely demonstrative.</u>***
 
 # Tool Development Process
 
