@@ -4,7 +4,7 @@
 [Full Challenge Link](https://mavenanalytics.io/challenges/maven-space-challenge)
 
 # Data Challenge - The History of the Space Race [Finalist]
-<img width="1770" height="992" alt="4 - Maven Space Challenge" src="https://github.com/user-attachments/assets/131b4da9-3d18-4a2f-aad8-90302a539972" />
+<img width="1635" height="963" alt="image" src="https://github.com/user-attachments/assets/cebb8afa-ded7-4e01-9535-673698af65be" />
 <br><br>
 
 I tried to tell the story of the Space Race, using a dataset containing data for all the space missions from 1957 to August 2022.
