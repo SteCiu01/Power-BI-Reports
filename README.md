@@ -33,6 +33,6 @@ During the post-pandemic time there has been a peack of inflation, and rather in
 
 That's how I created:
 
-Global Cost of Living Dashoboard 
+[Global Cost of Living Report](https://github.com/SteCiu01/Power-BI-Reports/edit/main/Global-Cost-of-Living/README.md)
 
-My Money Manager Pro tool.
+[My Money Manager Pro Tool](https://github.com/SteCiu01/Power-BI-Reports/blob/main/Money-Manager-Pro/README.md).
