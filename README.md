@@ -5,7 +5,7 @@
 
 A curated collection of my Power BI projects, developed primarily through data challenges I’ve participated in, though not limited to them. These personal projects motivated me to explore innovative ways to stretch Power BI's capabilities to their limits.
 
-In the projects' descriptions I include links, codes and tutorials so everyone can ideally try to replicate my development techniques. 
+In many of the projects' descriptions I include links, codes and tutorials so everyone can ideally try to replicate my development techniques. 
 
 ## Reports from Data Challenges
 
