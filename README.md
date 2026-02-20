@@ -32,3 +32,9 @@ That's how I created:
 |---------|-------------|------|
 | 🌐 Global Cost of Living Report | Cost of living across countries and cities over time | [View Project](https://github.com/SteCiu01/Power-BI-Reports/blob/main/Global-Cost-of-Living/README.md) |
 | 📈 My Money Manager Pro Tool | A platform designed to track personal investment insights | [View Project](https://github.com/SteCiu01/Power-BI-Reports/blob/main/Money-Manager-Pro/README.md) |
+
+## License
+
+This project is licensed under the MIT License — see the [LICENSE](./LICENSE) file for details.
+
+**Repository Maintained by:** [Stefano Ciurlia](https://github.com/SteCiu01)
