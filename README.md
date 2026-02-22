@@ -1,15 +1,16 @@
 # Power BI Reports
 
 <img width="2008" height="497" alt="image" src="https://github.com/user-attachments/assets/000ae8c7-4d09-42bb-9e52-2fde05c03308" />
+
 <hr>
 
-A curated collection of my Power BI projects, developed primarily through data challenges I’ve participated in, though not limited to them. These personal projects motivated me to explore innovative ways to stretch Power BI's capabilities to their limits.
+A curated collection of Power BI projects built for data challenges and personal use. Each one pushed me to find creative solutions and stretch Power BI's capabilities — and each one includes the techniques, source code, and guides needed for you to replicate the approach.
 
-In many of the projects' descriptions I include links, codes and tutorials so everyone can ideally try to replicate my development techniques. 
+---
 
 ## Reports from Data Challenges
 
-The challenges I took part are organised by Maven Analytics, my favourite analytical learning platform, with a great online community. Here the link to my [Analytical Profile](https://mavenshowcase.com/profile/681173b0-8011-704e-bdb5-614cd4fd011e) on their page, with my official entries for their challenges.
+These challenges are organised by Maven Analytics, my favourite analytical learning platform. You can find my official entries on my [Maven Analytics Profile](https://mavenshowcase.com/profile/681173b0-8011-704e-bdb5-614cd4fd011e).
 
 | Challenge | Result | Link |
 |-----------|--------|------|
@@ -22,16 +23,22 @@ The challenges I took part are organised by Maven Analytics, my favourite analyt
 | ⚕️ Maven Healthcare Challenge | — | [View Project](https://github.com/SteCiu01/Power-BI-Reports/blob/main/Maven-Healthcare-Challenge/README.md) |
 | 🍼 Maven Family Leave Challenge | — | [View Project](https://github.com/SteCiu01/Power-BI-Reports/blob/main/Maven-Family-Leave-Challenge/README.md) |
 
-## My Other Personal Projects
+---
 
-During the post-pandemic time there has been a peack of inflation, and rather in that time I started to invest consistently. Therefore, I came up with the idea to create two Power BI reports, one to track the cost of living in different countries and cities over time (to monitor the inflation) and the other one as platform to get better insights on my investments (as I didn't fully like the UI of the Bank App I was using). 
+## Personal Projects
 
-That's how I created:
+Not everything here comes from a challenge. Two of my favourite projects were born out of a very real personal need.
+
+During the post-pandemic inflation spike, I started investing more consistently — and quickly found myself frustrated by the limited insights my bank app provided. At the same time, I wanted a way to track how the cost of living was evolving across cities and countries, both out of curiosity and to inform some decisions I was weighing up.
+
+So I built the tools I wanted instead.
 
 | Project | Description | Link |
 |---------|-------------|------|
-| 🌐 Global Cost of Living Report | Cost of living across countries and cities over time | [View Project](https://github.com/SteCiu01/Power-BI-Reports/blob/main/Global-Cost-of-Living/README.md) |
-| 📈 My Money Manager Pro Tool | A platform designed to track personal investment insights | [View Project](https://github.com/SteCiu01/Power-BI-Reports/blob/main/Money-Manager-Pro/README.md) |
+| 🌐 Global Cost of Living Report | Tracks cost of living across countries and cities over time — built to monitor inflation trends and compare locations | [View Project](https://github.com/SteCiu01/Power-BI-Reports/blob/main/Global-Cost-of-Living/README.md) |
+| 📈 My Money Manager Pro | A personal investment tracking platform designed to replace the limited UI of my bank app with real analytical depth | [View Project](https://github.com/SteCiu01/Power-BI-Reports/blob/main/Money-Manager-Pro/README.md) |
+
+---
 
 ## License
 
