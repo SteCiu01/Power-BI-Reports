@@ -35,7 +35,7 @@ Interactive visuals aimed to illustrate the post-pandemic ridership recovery tre
 
 **Tooltip:** custom tooltip to show, for each data point, the pre-pandemic ridership, the post-pandemic ridership, and the percentage of change between the two.
 
-In orderde to realise what I was planning to, it was clear I needed to proceed to some data transformations, to shape the dataset and make it suitable to my visualization requirements.
+In order to realise what I was planning to, it was clear I needed to proceed to some data transformations, to shape the dataset and make it suitable to my visualization requirements.
 
 **Step 4:** used Power Query, to transform the data, following the below steps:
 
@@ -176,38 +176,6 @@ Merging the two tables to create all the needed elements for the intended visual
 
 ```
 let
-  #"Left Join Percentages Table" = Table.NestedJoin(
-    #"Extracted Text Before Delimiter", 
-    {"Date", "Attribute"}, 
-    #"MTA_Daily_Ridership - percentages", 
-    {"Date", "Attribute"}, 
-    "MTA_Daily_Ridership (2)", 
-    JoinKind.LeftOuter
-  ), 
-  #"Expanded {0}" = Table.ExpandTableColumn(
-    #"Left Join Percentages Table", 
-    "MTA_Daily_Ridership (2)", 
-    {"%"}, 
-    {"%"}
-  ), 
-  #"Replaced % 0s with Null" = Table.ReplaceValue(
-    #"Expanded {0}", 
-    0, 
-    null, 
-    Replacer.ReplaceValue, 
-    {"%"}
-  ), 
-  #"Renamed Columns" = Table.RenameColumns(
-    #"Replaced % 0s with Null", 
-    {{"Value", "Passengers After Covid"}, {"%", "% vs Pre-Pandemic"}}
-  ), 
-  // Estimation of the pre-pandemic passengers based onn the percentage vs. pre-pandemic
-  #"Added PrePandemic Passengers" = Table.AddColumn(
-    #"Renamed Columns", 
-    "Pre-Pandemic Passengers", 
-    each 1 * [Passengers After Covid] / [#"% vs Pre-Pandemic"], 
-    type number
-  ), 
   // Bringing in the "percentages" table
   #"Left Join Percentages Table" = Table.NestedJoin(
     #"Extracted Text Before Delimiter", 
@@ -357,7 +325,7 @@ in
 
 **Step 4:** Developed the interactive dashboard, according to plan, with the two visuals (scatter chart and area chart), the possibility to switch from one to the other with a click, the weekends/weekdays views, and the custom tooltip for the detailed figures.
 
-**Of note:** Regarding the themes, background, and layout, I used the official MTA branding colors and styles, they use in their website -&gt; [https://new.mta.info/](https://new.mta.info/)
+**Of note:** Regarding the themes, background, and layout, I used the official MTA branding colors and styles that they use on their website -&gt; [https://new.mta.info/](https://new.mta.info/)
 
 Here below the measures for the main metrics and the custom html tooltip:
 

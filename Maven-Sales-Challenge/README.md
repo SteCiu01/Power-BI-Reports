@@ -25,7 +25,7 @@ Step 4: data clean-up and transformation using Power Query, in order to make the
 
 Step 5: creation of the data model and all the measures.
 
-Step 6: actual Power BI development - for this dashboard it was decide to use almost entirely the SVG technique, within the KPI Cards and the Matrix, to guarantee a clean design that recalls the IBCS guidelines.
+Step 6: actual Power BI development - for this dashboard it was decided to use almost entirely the SVG technique, within the KPI Cards and the Matrix, to guarantee a clean design that recalls the IBCS guidelines.
 
 In the next sections it will be covered in detail the KPIs definition, the dashboard visualization and user flow ideas, and finally the SVG technique for Power BI development.
 
@@ -47,7 +47,7 @@ The total won revenue in $, higher value means positive achievement.
 
 **4. Avg. %△ SP (Sales Price) vs. LP (List Price or Recommended Retail Price)**
 
-The average percentage delta between the sales price and the list price, **%△ =** 0 is considered a positive achievement, as it would mean sales agents are not selling only thanks to massive discounts but they are also capale to well promote the value of the poducts they are selling.
+The average percentage delta between the sales price and the list price, **%△ =** 0 is considered a positive achievement, as it would mean sales agents are not selling only thanks to massive discounts but they are also capable to well promote the value of the products they are selling.
 
 To calculate this metric, starting from the original dataset, few transformations were required:
 

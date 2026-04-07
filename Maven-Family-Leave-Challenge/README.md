@@ -27,7 +27,7 @@ Starting from this, the work was planned ahead as follows:
 
 Identification of the potential readers of the article and targeting it to them. The article is related to Women's History Month in the United States, so the chosen target audience was people expecting a baby.
 
-Then, the work organization was planned: journal prototype in Figma, data analysis in Excel, production of the visuals in Excel and Power Point.
+Then, the work organization was planned: journal prototype in Figma, data analysis in Excel, production of the visuals in Excel and PowerPoint.
 
 Finally, the plan included to make the whole work "alive" and shareable in Power BI.
 
@@ -37,7 +37,7 @@ Finally, the plan included to make the whole work "alive" and shareable in Power
 
 **Stefano:** data clean-up, data analysis, creation of the story for the article, writing of the article itself, based on what emerged from the data analysis, and, creation of the visuals within the article.
 
-In this phase Excel, Power Point and Word have been the "go-to" tools. Their combination allowed flexibility in data analysis but also in quickly creating several drafts for each visual. Word was quite useful to write the article and then see where each visual could be located within the text.
+In this phase Excel, PowerPoint and Word have been the "go-to" tools. Their combination allowed flexibility in data analysis but also in quickly creating several drafts for each visual. Word was quite useful to write the article and then see where each visual could be located within the text.
 
 **Aleksandra:** preparing the design of the hypothetical Journal website, its logo, branding, style layout and interface design (wireframes) in Figma.
 
@@ -89,4 +89,4 @@ Therefore this is what has been left in the dataset for the Collins Aerospace co
 
 4 - To avoid problems and to better handle the analysis it has been substituted the "N/A" with "blank" in the 4 columns (Paid Maternity Leave, Unpaid Maternity Leave, Paid Paternity Leave and Unpaid Paternity Leave) that provide the number of weeks of paid/unpaid leave granted by each company in the dataset.
 
-This way, in each column only values for those companies where information has been reported remains. 
+This way, in each column only values for those companies where information has been reported remain. 

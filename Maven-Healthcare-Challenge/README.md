@@ -43,7 +43,7 @@ Leveraging these variations, the study delved into the exploration of interrelat
 
 As evidenced by the correlation matrix, the two measures exhibited a robust correlation coefficient of 0.876.
 
-In the light of that is safe to assume that when hospitals obtain improvements in their Overall Hospital Rating, patients are also more willing to recommend these hospitals.
+In light of that, it is safe to assume that when hospitals obtain improvements in their Overall Hospital Rating, patients are also more willing to recommend these hospitals.
 
 Following this validation, the study transitioned into a pivotal phase involving the construction of a robust model. This model aimed to elucidate the feature-related attributes exerting the most profound influence on the Overall Hospital Rating. To this end, a multiple linear regression framework was employed. The Overall Hospital Rating variation was designated as the dependent variable, with all other measures' variations considered as independent variables—excluding the Recommendation Score's variation. Exclusion of the Recommendation Score's variation was warranted due to its intrinsic linkage with the Overall Hospital Rating's variation and its potential to introduce bias into the model.
 

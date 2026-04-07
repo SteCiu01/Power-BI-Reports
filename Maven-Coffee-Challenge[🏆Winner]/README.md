@@ -212,7 +212,7 @@ When respondents are directly prompted to choose their favourite variety, coffee
 
 > ![undefined](https://mavenanalyticsio-upload-bucket-prod.s3.us-west-2.amazonaws.com/65253099/projects/78b63141-2415-483e-b0c3-e982a6fe6aa0.png)*Personal preference for different coffee types - indirect prompt*
 
-When respondents are asked to rate their personal preference for each coffee separately, on a scale from 1 to 5, the median answer for coffees A and C is 4 while is 3 for coffees B and C.
+When respondents are asked to rate their personal preference for each coffee separately, on a scale from 1 to 5, the median answer for coffees A and C is 4 while it is 3 for coffees B and D.
 
 This highlights how both fruity coffee beans gather indeed higher appreciation, although coffee D is skewed towards even higher appreciation than coffee A, with respondents that are more inclined to give the highest appreciation to coffee D vs. coffee A.
 

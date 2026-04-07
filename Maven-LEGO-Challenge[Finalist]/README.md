@@ -43,7 +43,7 @@ For each LEGO Set, there are the following columns containing valuable pieces of
 
 After understanding what was available in the csv file a decision on how to use each column needed to be made.
 
-For three columns: year of release, image URL and brikset.com URL the decision was quite straight forward just exploring the csv file: the year of release can be used both as a fact for enriching the output and as a dimension for filter purposes, while the image of the LEGO set and the brickset.com URL provide additional pieces that can enhance the quality of the output. A note: the URLs of the LEGO sets images have some blanks, therefore there will be the need to have a placeholder image for when the real image is not available.
+For three columns: year of release, image URL and brickset.com URL the decision was quite straight forward just exploring the csv file: the year of release can be used both as a fact for enriching the output and as a dimension for filter purposes, while the image of the LEGO set and the brickset.com URL provide additional pieces that can enhance the quality of the output. A note: the URLs of the LEGO sets images have some blanks, therefore there will be the need to have a placeholder image for when the real image is not available.
 
 For the other columns a more in-depth analysis is required to decide how to use them, and it has been decided to run it using Microsoft SQL Server Management Studio, tool that allows quick data manipulation.
 
@@ -220,14 +220,14 @@ After understanding the dataset, it was decided  what could and should be deliv
 - A first landing  welcome page with Logo, tool name, a nice background and a sentence of what is this tool about. Here the users are free to type in what they are looking for, narrowing down their search by year of release. 
 - In the welcome page there must be also a button that the users can click for having additional filter possibilities such as: LEGO category, LEGO theme group, LEGO theme, LEGO sub-theme, and a filter that includes Lego Set Name and Year of Release together sorted by year of release. 
 - Finally through a "Go" button, to be clicked after the users are happy with their selections, the users can land to page 2, the results page.
-- The results page needs to be simple with, on the left, a small visual preview (card slicer) of the LEGO Sets in the current selection (image, name and released year), that is scrollable and, allows the users to select one LEGO Set they want to see in detail. On the right, there should be the selected LEGO Set's details, with a bigger image, the release date, the LEGO Set name ad from what LEGO theme it comes from and, the number of pieces, the number of mini figures, the price at launch in $ the minimum age recommended and the link to brikset.com page of that selected LEGO Set, where the users can eventually purchase the set.
+- The results page needs to be simple with, on the left, a small visual preview (card slicer) of the LEGO Sets in the current selection (image, name and released year), that is scrollable and, allows the users to select one LEGO Set they want to see in detail. On the right, there should be the selected LEGO Set's details, with a bigger image, the release date, the LEGO Set name ad from what LEGO theme it comes from and, the number of pieces, the number of mini figures, the price at launch in $ the minimum age recommended and the link to brickset.com page of that selected LEGO Set, where the users can eventually purchase the set.
 - Also, in the results page there must be the option to open and close a filters pane where the users can adjust their selection, as well as a button that lets them reset all the filters.
 
 ## **Third step: data clean-up and transformation to make it suitable for developing the tool as designed.**
 
 For making data clean-up and transformations, it has been chosen Power Query, and, below it is provided the M-Code, with comments for each step, that is fully explanatory of the extensive data transformation that has been done at this stage.
 
-It's worthy to spend couple of words on some specific steps (from step 30 to step 38) for couple of reasons: first, these steps allow the tool to work properly, so that the users can visualize in a user-friendly way all the available LEGO Sets, second, they are the most complex transformations in this long code.
+It's worth spending a couple of words on some specific steps (from step 30 to step 38) for couple of reasons: first, these steps allow the tool to work properly, so that the users can visualize in a user-friendly way all the available LEGO Sets, second, they are the most complex transformations in this long code.
 
 As the tool will need to have a card slicer in the Results Page, where users will pick the LEGO Set they want to see in detail, the idea is that the LEGO Sets displayed in this slicer are sorted by their release date and those with the same date, in alphabetical order.
 
@@ -1226,7 +1226,7 @@ Finally, for the pages background, it has been exported a svg image of the backg
 
 After the tool was programmed as intended in Power BI Desktop, it was extensively tested in Power BI Service, that resulted crucial to find some bugs and inconsistencies to correct.
 
-There has been several back-and-forth between the two environments and finally the tool was completed.
+There have been several back-and-forth between the two environments and finally the tool was completed.
 
 Before the final publishing however, Aleksandra and Stefano let few days pass and re-looked at the design to make some final adjustments vs. the first design.
 
